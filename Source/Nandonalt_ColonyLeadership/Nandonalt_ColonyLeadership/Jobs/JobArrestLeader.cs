@@ -19,7 +19,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Pawn)base.CurJob.GetTarget(TargetIndex.A).Thing;
+                return (Pawn)CurJob.GetTarget(TargetIndex.A).Thing;
             }
         }
 
@@ -78,20 +78,20 @@ namespace Nandonalt_ColonyLeadership
                         {
                             lord.Notify_PawnAttemptArrested(pawn);
                         }
-                        GenClamor.DoClamor(pawn, 10f, ClamorType.Harm);
+                        GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
 
                         if (Rand.Value < 0.1f)
                         {
                             Messages.Message("MessageRefusedArrest".Translate(new object[]
                             {
         pawn.LabelShort
-                            }), pawn, MessageSound.SeriousAlert);
+                            }), pawn, MessageTypeDefOf.NegativeEvent);
 
                             pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk, null, false, false, null);
                             IncidentWorker_Rebellion.removeLeadership(pawn);
                             pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderArrested"));
                             this.pawn.mindState.mentalStateHandler.CurState.RecoverFromState();
-                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.BadNonUrgent, pawn, null);
+                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.NegativeEvent, pawn, null);
                             this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                             
                         }
@@ -111,7 +111,7 @@ namespace Nandonalt_ColonyLeadership
                         this.pawn.mindState.mentalStateHandler.CurState.RecoverFromState();
                         IncidentWorker_Rebellion.removeLeadership(this.Takee);
                         this.Takee.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderArrested"));
-                        Find.LetterStack.ReceiveLetter("LeaderEndLetterArrested".Translate(), "LeaderEndLetterDescArrested".Translate(new object[] { Takee.Name.ToStringFull }), LetterDefOf.BadNonUrgent, this.pawn, null);
+                        Find.LetterStack.ReceiveLetter("LeaderEndLetterArrested".Translate(), "LeaderEndLetterDescArrested".Translate(new object[] { Takee.Name.ToStringFull }), LetterDefOf.NegativeEvent, this.pawn, null);
                         foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
                         {
                             if (p != this.Takee)
