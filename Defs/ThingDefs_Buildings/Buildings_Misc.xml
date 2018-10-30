@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Buildings>
+<Defs>
 
 
   <ThingDef Name="BuildingBaseCL" Abstract="True">
@@ -280,4 +280,4 @@
 		</placeWorkers>
   </ThingDef>
   
-</Buildings>
+</Defs>

@@ -5,7 +5,7 @@
     <defName>LeaderLevel</defName>
     <needClass>Nandonalt_ColonyLeadership.Need_LeaderLevel</needClass>
     <label>Leadership</label>
-    <description>The level of a leader is defined by what others think about the leader and their skillset.</description>
+    <description>The level of a leader is defined by what others think about the leader and his skillset.</description>
     <minIntelligence>Humanlike</minIntelligence>
     <colonistsOnly>true</colonistsOnly>
 	<neverOnPrisoner>true</neverOnPrisoner>
