@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<IncidentDefs>
+<Defs>
 
 	<IncidentDef>
 		<defName>LeaderElection</defName>
@@ -19,4 +19,4 @@
 		 <baseChance>0</baseChance>
 	</IncidentDef>
 	
-</IncidentDefs>
+</Defs>
