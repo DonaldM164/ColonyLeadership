@@ -10,7 +10,7 @@
 		 <baseChance>0</baseChance>
 	</IncidentDef>
 	
-		<IncidentDef>
+	<IncidentDef>
 		<defName>RebellionL</defName>
 		<label>Rebellion</label>
 		<targetType>MapPlayerHome</targetType>
