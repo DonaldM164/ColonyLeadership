@@ -84,7 +84,7 @@ namespace Nandonalt_ColonyLeadership
                         }
                         if (canBeVoted.NullOrEmpty())
                         {
-                            Messages.Message("ElectionFail_NoAbleLeader".Translate(), MessageSound.Negative);
+                            Messages.Message("ElectionFail_NoAbleLeader".Translate(), MessageTypeDefOf.RejectInput);
                         }
                         else
                         {
@@ -109,14 +109,14 @@ namespace Nandonalt_ColonyLeadership
             Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
             if (pawn == null)
             {
-                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageSound.RejectInput);
+                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
                 return false;
             }
 
             lastElectionTick = Find.TickManager.TicksGame;
             allowElection = false;
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(Position), map, null);
-            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.Good, new TargetInfo(Position, map, false), null);
+            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.PositiveEvent, new TargetInfo(Position, map, false), null);
             return true;
         }
 

@@ -13,7 +13,8 @@ namespace Nandonalt_ColonyLeadership
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-            List<Thing> allBuildingsColonist = base.Map.listerThings.AllThings;
+            Map currentMap = Find.CurrentMap;
+            List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
             for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
                 Thing thing = allBuildingsColonist[i];
@@ -28,8 +29,8 @@ namespace Nandonalt_ColonyLeadership
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
         {
-            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, map).ToList<IntVec3>());
-
+            Map currentMap = Find.CurrentMap;
+            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, currentMap).ToList<IntVec3>());
         }
 
         public class PlaceWorker_BallotBox : PlaceWorker
@@ -37,8 +38,8 @@ namespace Nandonalt_ColonyLeadership
 
             public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
             {
-
-                List<Thing> allBuildingsColonist = base.Map.listerThings.AllThings;
+                Map currentMap = Find.CurrentMap;
+                List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
                 for (int i = 0; i < allBuildingsColonist.Count; i++)
                 {
                     Thing thing = allBuildingsColonist[i];
