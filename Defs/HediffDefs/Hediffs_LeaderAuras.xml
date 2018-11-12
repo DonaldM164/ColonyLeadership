@@ -65,9 +65,7 @@
         <label>Level 1</label>
           <statOffsets>
           <MoveSpeed>+0.10</MoveSpeed>
-		  <ShootingAccuracy>+0.1</ShootingAccuracy>
 		  <MeleeHitChance>+0.05</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.05</MeleeWeapon_Cooldown>
 		  <MedicalTendQualityOffset>+0.05</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -77,9 +75,7 @@
         <label>Level 2</label>
           <statOffsets>
           <MoveSpeed>+0.20</MoveSpeed>
-		  <ShootingAccuracy>+0.2</ShootingAccuracy>
 		  <MeleeHitChance>+0.15</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.10</MeleeWeapon_Cooldown>
 		  <MedicalTendQualityOffset>+0.10</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -89,9 +85,7 @@
         <label>Level 3</label>
           <statOffsets>
           <MoveSpeed>+0.30</MoveSpeed>
-		  <ShootingAccuracy>+0.35</ShootingAccuracy>
 		  <MeleeHitChance>+0.25</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.20</MeleeWeapon_Cooldown>
 		  <MedicalTendQualityOffset>+0.20</MedicalTendQualityOffset>
           </statOffsets>
       </li>

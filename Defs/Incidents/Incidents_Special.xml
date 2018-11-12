@@ -4,7 +4,6 @@
 	<IncidentDef>
 		<defName>LeaderElection</defName>
 		<label>LeaderElection</label>
-		<targetType>MapPlayerHome</targetType>
 			<category>Misc</category>
 		<workerClass>Nandonalt_ColonyLeadership.IncidentWorker_LeaderElection</workerClass>
 		 <baseChance>0</baseChance>
@@ -13,7 +12,6 @@
 	<IncidentDef>
 		<defName>RebellionL</defName>
 		<label>Rebellion</label>
-		<targetType>MapPlayerHome</targetType>
 			<category>Misc</category>
 		<workerClass>Nandonalt_ColonyLeadership.IncidentWorker_Rebellion</workerClass>
 		 <baseChance>0</baseChance>

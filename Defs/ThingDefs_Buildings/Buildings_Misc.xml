@@ -11,7 +11,7 @@
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>BuildingRubble</filthLeaving>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
   </ThingDef>
   
   <!--============================ Spots =============================-->
@@ -57,7 +57,6 @@
       <MaxHitPoints>150</MaxHitPoints>
       <Flammability>1.0</Flammability>
 	   <Beauty>5</Beauty>
-      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
 	      <LearningSpeedFactor>1</LearningSpeedFactor>
     </statBases>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
@@ -138,10 +137,13 @@
 	    <Silver>25</Silver>
       </costList>
 	<designationCategory>LeadershipModTab</designationCategory>
-    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <minifiedDef>MinifiedThing</minifiedDef>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
 		</building>
+	<thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
     <comps>
 	   <li>	  
         <compClass>CompQuality</compClass>		
@@ -203,10 +205,13 @@
 	  <Silver>25</Silver>
       </costList>
 	<designationCategory>LeadershipModTab</designationCategory>
-    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <minifiedDef>MinifiedThing</minifiedDef>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
 		</building>
+	<thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
     <comps>
 	   <li>	  
         <compClass>CompQuality</compClass>		
@@ -261,7 +266,6 @@
       <MaxHitPoints>150</MaxHitPoints>
       <Flammability>1.0</Flammability>
 	   <Beauty>0</Beauty>
-      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
    </statBases>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
     <designationCategory>LeadershipModTab</designationCategory>
