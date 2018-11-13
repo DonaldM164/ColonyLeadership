@@ -10,7 +10,7 @@ namespace Nandonalt_ColonyLeadership
     public class InteractionWorker_LeaderOnly : InteractionWorker
     {
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
-        {           
+        {
             Hediff h1 = initiator.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
             Hediff h2 = initiator.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
             Hediff h3 = initiator.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
@@ -19,5 +19,9 @@ namespace Nandonalt_ColonyLeadership
             else return 0f;
         }
     }
+
+    
+
+
 }
 

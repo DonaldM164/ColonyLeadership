@@ -266,7 +266,11 @@ namespace Nandonalt_ColonyLeadership
                     case LessonState.started:
                     case LessonState.gathering:
                     case LessonState.finishing:
+<<<<<<< HEAD
                         Messages.Message("A leader has started a lesson on the teaching spot.", TargetInfo.Invalid, nullSound);
+=======
+                        Messages.Message("A leader has started a lesson on the teaching spot.", TargetInfo.Invalid, MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                         return;
                 }
             }
@@ -289,11 +293,17 @@ namespace Nandonalt_ColonyLeadership
                 return;
             }
 
+<<<<<<< HEAD
             //Where to get factionbase? 
 
             //FactionBase factionBase = (FactionBase)this.Map.info.parent;
             /**
             Messages.Message("LessonGathering".Translate(new object[] { factionBase.label, teacher.LabelShort }) + skills, TargetInfo.Invalid, nullSound);
+=======
+            Settlement factionBase = (Settlement)this.Map.info.parent;
+
+            Messages.Message("LessonGathering".Translate(new object[] { factionBase.Label, teacher.LabelShort }) + skills, TargetInfo.Invalid, MessageTypeDefOf.NeutralEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
             ChangeState(State.lesson, LessonState.started);
             //this.currentState = State.started;
             Job job = new Job(DefDatabase<JobDef>.GetNamed("TeachLesson"), this);
@@ -339,7 +349,11 @@ namespace Nandonalt_ColonyLeadership
             bool hasSkill = TeachingUtility.leaderHasAnySkill(tempTeacher, out report, out skills);
             if (hasSkill && report != "")
             {
+<<<<<<< HEAD
                 Messages.Message(report, TargetInfo.Invalid, nullSound);
+=======
+                Messages.Message(report, TargetInfo.Invalid, MessageTypeDefOf.NeutralEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
             }
             if (!hasSkill) return RejectMessage(report);
             if (tempTeacher.Drafted) return RejectMessage("TeacherDrafted".Translate());
@@ -353,7 +367,11 @@ namespace Nandonalt_ColonyLeadership
 
         private bool RejectMessage(string s, Pawn pawn = null)
         {
+<<<<<<< HEAD
             Messages.Message(s, TargetInfo.Invalid, nullSound);
+=======
+            Messages.Message(s, TargetInfo.Invalid, MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
             if (pawn != null) pawn = null;
             return false;
         }

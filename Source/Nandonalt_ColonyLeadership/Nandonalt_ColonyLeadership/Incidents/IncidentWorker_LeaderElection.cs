@@ -115,7 +115,11 @@ namespace Nandonalt_ColonyLeadership
 
             MessageTypeDef howToMakeSound = new MessageTypeDef();
             if (bestOf.NullOrEmpty() || canBeVoted.NullOrEmpty()) {
+<<<<<<< HEAD
                 Messages.Message("NoColonistAbleLeader".Translate(), howToMakeSound);
+=======
+                Messages.Message("NoColonistAbleLeader".Translate(), MessageTypeDefOf.NegativeEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 return false;
             }
 
@@ -164,7 +168,11 @@ namespace Nandonalt_ColonyLeadership
             
             if (toBeIgnored.Contains(pawn))
             {
+<<<<<<< HEAD
                 Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", howToMakeSound);
+=======
+                Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", MessageTypeDefOf.NegativeEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 return false;
             }
 
@@ -239,13 +247,21 @@ namespace Nandonalt_ColonyLeadership
             Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
             if (pawn == null)
             {
+<<<<<<< HEAD
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), moreSound);
+=======
+                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 return false;
             }
             IntVec3 intVec;
             if (!RCellFinder.TryFindPartySpot(pawn, out intVec))
             {
+<<<<<<< HEAD
                 Messages.Message("Couldn't find a suitable safe spot for the election.", moreSound);
+=======
+                Messages.Message("Couldn't find a suitable safe spot for the election.", MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 return false;
             }
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(intVec), map, null);

@@ -19,7 +19,11 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
+<<<<<<< HEAD
                 return (Pawn)base.job.GetTarget(TargetIndex.A).Thing;
+=======
+                return (Pawn)CurJob.GetTarget(TargetIndex.A).Thing;
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
             }
         }
 
@@ -78,8 +82,12 @@ namespace Nandonalt_ColonyLeadership
                         {
                             lord.Notify_PawnAttemptArrested(pawn);
                         }
+<<<<<<< HEAD
                         ClamorDef newDef = new ClamorDef(); //I have no idea what this is gonna do. Needed for next line. 
                         GenClamor.DoClamor(pawn, 10f, newDef);
+=======
+                        GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 
                         if (Rand.Value < 0.1f)
                         {
@@ -87,7 +95,11 @@ namespace Nandonalt_ColonyLeadership
                             Messages.Message("MessageRefusedArrest".Translate(new object[]
                             {
         pawn.LabelShort
+<<<<<<< HEAD
                             }), pawn, newMsgDef);
+=======
+                            }), pawn, MessageTypeDefOf.NegativeEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 
                             pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk, null, false, false, null);
                             IncidentWorker_Rebellion.removeLeadership(pawn);

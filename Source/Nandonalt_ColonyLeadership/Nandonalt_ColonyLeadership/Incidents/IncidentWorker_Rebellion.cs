@@ -59,7 +59,11 @@ namespace Nandonalt_ColonyLeadership
                 pawn.mindState.mentalStateHandler.TryStartMentalState(DefDatabase<MentalStateDef>.GetNamed("Rebelling"), null, false, false, null);
                 String s = "He";
                 if (pawn.gender == Gender.Female) s = "She";
+<<<<<<< HEAD
                 Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.ThreatBig, pawn, null);
+=======
+                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.NegativeEvent, pawn, null);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 return true;
 
             }
