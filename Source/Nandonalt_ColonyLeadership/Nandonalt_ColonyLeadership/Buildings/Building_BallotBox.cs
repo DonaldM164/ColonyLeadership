@@ -85,11 +85,7 @@ namespace Nandonalt_ColonyLeadership
                         if (canBeVoted.NullOrEmpty())
                         {
 <<<<<<< HEAD
-<<<<<<< HEAD
                             Messages.Message("ElectionFail_NoAbleLeader".Translate(),nullSound);
-=======
-                            Messages.Message("ElectionFail_NoAbleLeader".Translate(), MessageTypeDefOf.RejectInput);
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                             Messages.Message("ElectionFail_NoAbleLeader".Translate(), MessageTypeDefOf.RejectInput);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -118,11 +114,7 @@ namespace Nandonalt_ColonyLeadership
             if (pawn == null)
             {
 <<<<<<< HEAD
-<<<<<<< HEAD
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), nullSound);
-=======
-                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0

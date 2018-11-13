@@ -20,11 +20,7 @@ namespace Nandonalt_ColonyLeadership
             get
             {
 <<<<<<< HEAD
-<<<<<<< HEAD
                 return (Pawn)base.job.GetTarget(TargetIndex.A).Thing;
-=======
-                return (Pawn)CurJob.GetTarget(TargetIndex.A).Thing;
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 return (Pawn)CurJob.GetTarget(TargetIndex.A).Thing;
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -87,12 +83,8 @@ namespace Nandonalt_ColonyLeadership
                             lord.Notify_PawnAttemptArrested(pawn);
                         }
 <<<<<<< HEAD
-<<<<<<< HEAD
                         ClamorDef newDef = new ClamorDef(); //I have no idea what this is gonna do. Needed for next line. 
                         GenClamor.DoClamor(pawn, 10f, newDef);
-=======
-                        GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                         GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -104,11 +96,7 @@ namespace Nandonalt_ColonyLeadership
                             {
         pawn.LabelShort
 <<<<<<< HEAD
-<<<<<<< HEAD
                             }), pawn, newMsgDef);
-=======
-                            }), pawn, MessageTypeDefOf.NegativeEvent);
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                             }), pawn, MessageTypeDefOf.NegativeEvent);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
