@@ -10,17 +10,15 @@ namespace Nandonalt_ColonyLeadership
 {
     public class PlaceWorker_TeachingSpot : PlaceWorker
     {
-        Map ourMap;
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-<<<<<<< HEAD
-            List<Thing> allBuildingsColonist = map.listerThings.AllThings;
-=======
+       
+
             Map currentMap = Find.CurrentMap;
             List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
-            for (int i = 0; i < allBuildingsColonist.Count; i++)
+
+            for (int i = 0; i < allBuildingsColonist.Count; i++) //me 
             {
                 Thing thing = allBuildingsColonist[i];
                 if (thing.def.defName == "TeachingSpot" || thing.def.defName == "TeachingSpot_Blueprint")
@@ -28,20 +26,15 @@ namespace Nandonalt_ColonyLeadership
                     return new AcceptanceReport(reasonText: "OnlyOnePerColony".Translate(new object[] { thing.def.LabelCap }));
                 }
             }
-            ourMap = map;
 
             return true;
         }
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
-        {
-<<<<<<< HEAD
-            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, ourMap).ToList<IntVec3>());
+        {        
 
-=======
             Map currentMap = Find.CurrentMap;
             GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, currentMap).ToList<IntVec3>());
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
         }
 
     }
@@ -56,14 +49,9 @@ namespace Nandonalt_ColonyLeadership
             List<Thing> allBuildingsColonist = map.listerThings.AllThings;
             for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
-<<<<<<< HEAD
+
                 Thing thing = allBuildingsColonist[i];
                 if (thing.def.defName == "BallotBox" || thing.def.defName == "BallotBox_Blueprint")
-=======
-                Map currentMap = Find.CurrentMap;
-                List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
-                for (int i = 0; i < allBuildingsColonist.Count; i++)
->>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 {
                     return new AcceptanceReport("OnlyOnePerColony".Translate(new object[] { thing.def.LabelCap }));
                 }
