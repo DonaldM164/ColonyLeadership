@@ -15,7 +15,12 @@ namespace Nandonalt_ColonyLeadership
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             List<Thing> allBuildingsColonist = map.listerThings.AllThings;
+=======
+            Map currentMap = Find.CurrentMap;
+            List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
             Map currentMap = Find.CurrentMap;
             List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
@@ -36,8 +41,13 @@ namespace Nandonalt_ColonyLeadership
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, ourMap).ToList<IntVec3>());
 
+=======
+            Map currentMap = Find.CurrentMap;
+            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, currentMap).ToList<IntVec3>());
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
             Map currentMap = Find.CurrentMap;
             GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, currentMap).ToList<IntVec3>());
@@ -57,9 +67,12 @@ namespace Nandonalt_ColonyLeadership
             for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Thing thing = allBuildingsColonist[i];
                 if (thing.def.defName == "BallotBox" || thing.def.defName == "BallotBox_Blueprint")
 =======
+=======
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
                 Map currentMap = Find.CurrentMap;
                 List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
                 for (int i = 0; i < allBuildingsColonist.Count; i++)

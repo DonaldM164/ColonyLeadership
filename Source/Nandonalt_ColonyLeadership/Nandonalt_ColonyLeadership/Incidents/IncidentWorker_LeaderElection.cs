@@ -116,7 +116,11 @@ namespace Nandonalt_ColonyLeadership
             MessageTypeDef howToMakeSound = new MessageTypeDef();
             if (bestOf.NullOrEmpty() || canBeVoted.NullOrEmpty()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Messages.Message("NoColonistAbleLeader".Translate(), howToMakeSound);
+=======
+                Messages.Message("NoColonistAbleLeader".Translate(), MessageTypeDefOf.NegativeEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 Messages.Message("NoColonistAbleLeader".Translate(), MessageTypeDefOf.NegativeEvent);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -169,7 +173,11 @@ namespace Nandonalt_ColonyLeadership
             if (toBeIgnored.Contains(pawn))
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", howToMakeSound);
+=======
+                Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", MessageTypeDefOf.NegativeEvent);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", MessageTypeDefOf.NegativeEvent);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -248,7 +256,11 @@ namespace Nandonalt_ColonyLeadership
             if (pawn == null)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), moreSound);
+=======
+                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
@@ -258,7 +270,11 @@ namespace Nandonalt_ColonyLeadership
             if (!RCellFinder.TryFindPartySpot(pawn, out intVec))
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Messages.Message("Couldn't find a suitable safe spot for the election.", moreSound);
+=======
+                Messages.Message("Couldn't find a suitable safe spot for the election.", MessageTypeDefOf.RejectInput);
+>>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
 =======
                 Messages.Message("Couldn't find a suitable safe spot for the election.", MessageTypeDefOf.RejectInput);
 >>>>>>> bec287482b5d4209ca7b3c4826f77b0e7a1882d0
