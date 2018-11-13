@@ -14,7 +14,7 @@ namespace Nandonalt_ColonyLeadership
         public List<int> allowedDays = new List<int>(new int[] { 0, 6, 14 }); //Means day 1, 7 and 15 on a season
         public bool allowElection = true;
         public int lastElectionTick = -99999;
-
+        MessageTypeDef nullSound = new MessageTypeDef();
 
         protected virtual List<Pawn> getLeaders()
         {
@@ -84,7 +84,7 @@ namespace Nandonalt_ColonyLeadership
                         }
                         if (canBeVoted.NullOrEmpty())
                         {
-                            Messages.Message("ElectionFail_NoAbleLeader".Translate(), MessageSound.Negative);
+                            Messages.Message("ElectionFail_NoAbleLeader".Translate(),nullSound);
                         }
                         else
                         {
@@ -109,14 +109,14 @@ namespace Nandonalt_ColonyLeadership
             Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
             if (pawn == null)
             {
-                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageSound.RejectInput);
+                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), nullSound);
                 return false;
             }
 
             lastElectionTick = Find.TickManager.TicksGame;
             allowElection = false;
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(Position), map, null);
-            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.Good, new TargetInfo(Position, map, false), null);
+            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.PositiveEvent, new TargetInfo(Position, map, false), null);
             return true;
         }
 
@@ -127,7 +127,7 @@ namespace Nandonalt_ColonyLeadership
   
             if(this.lastElectionTick > 0)
             {
-                str = (Find.TickManager.TicksGame - lastElectionTick).ToStringTicksToPeriod(true) + " ago.";
+                str = (Find.TickManager.TicksGame - lastElectionTick).ToStringTicksToPeriodVague(true) + " ago.";
             }
             if(!Utility.isDemocracy) return inspectString + "ElectionFail_NoDemocracy".Translate();
             if(!allowElection) return inspectString + "BallotDescriptionDisabled".Translate() + str;
@@ -144,8 +144,8 @@ namespace Nandonalt_ColonyLeadership
             {
                 yield return new Command_Toggle
                 {
-                    hotKey = KeyBindingDefOf.CommandTogglePower,
-                    icon = TexCommand.Forbidden,
+                    hotKey = KeyBindingDefOf.Command_TogglePower,
+                    icon = TexCommand.ForbidOn,
                     defaultLabel = "EnableElections".Translate(),
                     defaultDesc = "EnableElectionsDesc".Translate(),
                     isActive = (() => this.allowElection),

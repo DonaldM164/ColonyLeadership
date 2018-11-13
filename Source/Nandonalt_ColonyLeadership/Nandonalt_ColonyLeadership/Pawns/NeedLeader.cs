@@ -113,7 +113,7 @@ namespace Nandonalt_ColonyLeadership
                         str.AppendLine("OnlyOnce".Translate());
                         Action removeLeader = delegate
                         {
-                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.BadNonUrgent, this.pawn, null);
+                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.NegativeEvent, this.pawn, null);
                             this.pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderEnd"));
                             IncidentWorker_Rebellion.removeLeadership(this.pawn);
                         };
@@ -144,12 +144,12 @@ namespace Nandonalt_ColonyLeadership
                         }
                         if (!flag)
                         {
-                            IncidentParms parms = StorytellerUtility.DefaultParmsNow(Find.Storyteller.def, IncidentDef.Named("RebellionL").category, (this.pawn.Map));
+                            IncidentParms parms = StorytellerUtility.DefaultParmsNow(IncidentDef.Named("RebellionL").category, (this.pawn.Map));
                             if (IncidentDef.Named("RebellionL").Worker.TryExecute(parms))
                             {
                                 String s = "her";
                                 if (this.pawn.gender == Gender.Male) s = "his";
-                                Find.LetterStack.ReceiveLetter("RebellionLetter".Translate(), "RebellionLetterDesc".Translate(new object[] { this.pawn.Name.ToStringFull }), LetterDefOf.BadNonUrgent, this.pawn, null);
+                                Find.LetterStack.ReceiveLetter("RebellionLetter".Translate(), "RebellionLetterDesc".Translate(new object[] { this.pawn.Name.ToStringFull }), LetterDefOf.NegativeEvent, this.pawn, null);
                             }
                         }
                     }

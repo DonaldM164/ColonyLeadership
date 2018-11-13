@@ -36,7 +36,6 @@ namespace Nandonalt_ColonyLeadership
                
                 this.forcePause = true;
                 this.doCloseX = true;
-                this.closeOnEscapeKey = true;
                 this.absorbInputAroundWindow = false;
                 this.closeOnClickedOutside = true;
             this.chosenPawn = null;

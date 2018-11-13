@@ -44,7 +44,7 @@ namespace Nandonalt_ColonyLeadership
         {
 
             List<Pawn> pawns = new List<Pawn>();
-            pawns.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_FreeColonists);
+            pawns.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists);
             return pawns;
         }
 

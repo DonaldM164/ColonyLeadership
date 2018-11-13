@@ -11,6 +11,7 @@ namespace Nandonalt_ColonyLeadership
 {
     public class Building_TeachingSpot : Building
     {
+        MessageTypeDef nullSound = new MessageTypeDef();
         public Pawn tempTeacher;
         public Pawn teacher;
         public bool destroyedFlag = false;
@@ -265,7 +266,7 @@ namespace Nandonalt_ColonyLeadership
                     case LessonState.started:
                     case LessonState.gathering:
                     case LessonState.finishing:
-                        Messages.Message("A leader has started a lesson on the teaching spot.", TargetInfo.Invalid, MessageSound.RejectInput);
+                        Messages.Message("A leader has started a lesson on the teaching spot.", TargetInfo.Invalid, nullSound);
                         return;
                 }
             }
@@ -288,9 +289,11 @@ namespace Nandonalt_ColonyLeadership
                 return;
             }
 
-            FactionBase factionBase = (FactionBase)this.Map.info.parent;
+            //Where to get factionbase? 
 
-            Messages.Message("LessonGathering".Translate(new object[] { factionBase.Label, teacher.LabelShort }) + skills, TargetInfo.Invalid, MessageSound.Standard);
+            //FactionBase factionBase = (FactionBase)this.Map.info.parent;
+            /**
+            Messages.Message("LessonGathering".Translate(new object[] { factionBase.label, teacher.LabelShort }) + skills, TargetInfo.Invalid, nullSound);
             ChangeState(State.lesson, LessonState.started);
             //this.currentState = State.started;
             Job job = new Job(DefDatabase<JobDef>.GetNamed("TeachLesson"), this);
@@ -302,7 +305,7 @@ namespace Nandonalt_ColonyLeadership
             //  if (hediff != null) hediff.lastLessonTick = Find.TickManager.TicksGame;
             GameComponent_ColonyLeadership comp = Utility.getCLComp();
             if(comp != null) comp.lastLessonTick = Find.TickManager.TicksGame;
-
+        **/
 
         }
 
@@ -336,7 +339,7 @@ namespace Nandonalt_ColonyLeadership
             bool hasSkill = TeachingUtility.leaderHasAnySkill(tempTeacher, out report, out skills);
             if (hasSkill && report != "")
             {
-                Messages.Message(report, TargetInfo.Invalid, MessageSound.Standard);
+                Messages.Message(report, TargetInfo.Invalid, nullSound);
             }
             if (!hasSkill) return RejectMessage(report);
             if (tempTeacher.Drafted) return RejectMessage("TeacherDrafted".Translate());
@@ -350,7 +353,7 @@ namespace Nandonalt_ColonyLeadership
 
         private bool RejectMessage(string s, Pawn pawn = null)
         {
-            Messages.Message(s, TargetInfo.Invalid, MessageSound.RejectInput);
+            Messages.Message(s, TargetInfo.Invalid, nullSound);
             if (pawn != null) pawn = null;
             return false;
         }

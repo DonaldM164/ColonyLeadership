@@ -13,7 +13,7 @@ namespace Nandonalt_ColonyLeadership
     public class IncidentWorker_LeaderElection : IncidentWorker
     {
         
-        public override bool TryExecute(IncidentParms parms)
+        protected override bool TryExecuteWorker(IncidentParms parms)
         {
             List<Pawn> pawns = new List<Pawn>();
             pawns.AddRange(getAllColonists());
@@ -63,7 +63,7 @@ namespace Nandonalt_ColonyLeadership
         {
           
             List<Pawn> pawns = new List<Pawn>();
-            pawns.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_FreeColonists);
+            pawns.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists);
             return pawns;
         }
 
@@ -113,8 +113,9 @@ namespace Nandonalt_ColonyLeadership
                
             String targetLeader = null;
 
+            MessageTypeDef howToMakeSound = new MessageTypeDef();
             if (bestOf.NullOrEmpty() || canBeVoted.NullOrEmpty()) {
-                Messages.Message("NoColonistAbleLeader".Translate(), MessageSound.Negative);
+                Messages.Message("NoColonistAbleLeader".Translate(), howToMakeSound);
                 return false;
             }
 
@@ -160,9 +161,10 @@ namespace Nandonalt_ColonyLeadership
             Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(targetLeader), pawn, null);
             int count;
 
+            
             if (toBeIgnored.Contains(pawn))
             {
-                Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", MessageSound.Negative);
+                Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", howToMakeSound);
                 return false;
             }
 
@@ -209,11 +211,11 @@ namespace Nandonalt_ColonyLeadership
             }
             if (Utility.getGov() != null)
             {
-                Find.LetterStack.ReceiveLetter("NewLeaderLetterTitle".Translate(new object[] { Utility.getGov().nameMale }), stringBuilder.ToString(), LetterDefOf.Good, pawn, null);
+                Find.LetterStack.ReceiveLetter("NewLeaderLetterTitle".Translate(new object[] { Utility.getGov().nameMale }), stringBuilder.ToString(), LetterDefOf.PositiveEvent, pawn, null);
             }
             else
             {
-                Find.LetterStack.ReceiveLetter("New Leader", stringBuilder.ToString(), LetterDefOf.Good, pawn, null);
+                Find.LetterStack.ReceiveLetter("New Leader", stringBuilder.ToString(), LetterDefOf.PositiveEvent, pawn, null);
             }
 
             foreach (Pawn p in getAllColonists())
@@ -233,20 +235,21 @@ namespace Nandonalt_ColonyLeadership
 
         public static bool TryStartGathering(Map map)
         {
+            MessageTypeDef moreSound = new MessageTypeDef();
             Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
             if (pawn == null)
             {
-                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageSound.RejectInput);
+                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), moreSound);
                 return false;
             }
             IntVec3 intVec;
             if (!RCellFinder.TryFindPartySpot(pawn, out intVec))
             {
-                Messages.Message("Couldn't find a suitable safe spot for the election.", MessageSound.RejectInput);
+                Messages.Message("Couldn't find a suitable safe spot for the election.", moreSound);
                 return false;
             }
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(intVec), map, null);
-            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.Good, new TargetInfo(intVec, map, false), null);
+            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.PositiveEvent, new TargetInfo(intVec, map, false), null);
             return true;
         }
 
@@ -272,7 +275,7 @@ namespace Nandonalt_ColonyLeadership
         {
             if (pawn.story.WorkTagIsDisabled(WorkTags.PlantWork)) return 0;
             if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Growing)) return 0;
-            float a = pawn.skills.GetSkill(SkillDefOf.Growing).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Growing)) * 0.4f;
+            float a = pawn.skills.GetSkill(SkillDefOf.Plants).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Plants)) * 0.4f;
             float b = pawn.skills.GetSkill(SkillDefOf.Medicine).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Medicine)) * 0.3f;
             float c = pawn.skills.GetSkill(SkillDefOf.Animals).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Animals)) * 0.3f;
             return (a + b + c);

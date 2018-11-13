@@ -19,7 +19,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Pawn)base.CurJob.GetTarget(TargetIndex.A).Thing;
+                return (Pawn)base.job.GetTarget(TargetIndex.A).Thing;
             }
         }
 
@@ -27,7 +27,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Building_Bed)base.CurJob.GetTarget(TargetIndex.B).Thing;
+                return (Building_Bed)base.job.GetTarget(TargetIndex.B).Thing;
             }
         }
 
@@ -36,13 +36,13 @@ namespace Nandonalt_ColonyLeadership
             this.FailOnDestroyedOrNull(TargetIndex.A);
             this.FailOnDestroyedOrNull(TargetIndex.B);
             this.FailOnAggroMentalState(TargetIndex.A);
-            if (base.CurJob.def == JobDefOf.Rescue)
+            if (base.job.def == JobDefOf.Rescue)
             {
                 this.FailOnNotDowned(TargetIndex.A);
             }
             this.FailOn(delegate
             {
-                if (this.CurJob.def.makeTargetPrisoner)
+                if (this.job.def.makeTargetPrisoner)
                 {
                     if (!this.DropBed.ForPrisoners)
                     {
@@ -60,38 +60,40 @@ namespace Nandonalt_ColonyLeadership
             yield return Toils_Bed.ClaimBedIfNonMedical(TargetIndex.B, TargetIndex.A);
             this.globalFinishActions.Add(delegate
             {
-                if (this.CurJob.def.makeTargetPrisoner && this.Takee.ownership.OwnedBed == this.DropBed && this.Takee.Position != RestUtility.GetBedSleepingSlotPosFor(this.Takee, this.DropBed))
+                if (this.job.def.makeTargetPrisoner && this.Takee.ownership.OwnedBed == this.DropBed && this.Takee.Position != RestUtility.GetBedSleepingSlotPosFor(this.Takee, this.DropBed))
                 {
                     this.Takee.ownership.UnclaimBed();
                 }
-            });
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnNonMedicalBedNotOwned(TargetIndex.B, TargetIndex.A).FailOn(() => this.CurJob.def == JobDefOf.Arrest && !this.Takee.CanBeArrested()).FailOn(() => !this.pawn.CanReach(this.DropBed, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+            });                         //Pretty sure I just changed this code to say "If(!CanBeArrestedByMyself){... See !this.Takee.CanBeArrestedBy((Pawn)base.pawn)). Previously used to be !this.CanBeArrested() but this method no longer exists. 
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnNonMedicalBedNotOwned(TargetIndex.B, TargetIndex.A).FailOn(() => this.job.def == JobDefOf.Arrest && !this.Takee.CanBeArrestedBy((Pawn)base.pawn)).FailOn(() => !this.pawn.CanReach(this.DropBed, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return new Toil
             {
                 initAction = delegate
                 {
-                    if (this.CurJob.def.makeTargetPrisoner)
+                    if (this.job.def.makeTargetPrisoner)
                     {
-                        Pawn pawn = (Pawn)this.CurJob.targetA.Thing;
+                        Pawn pawn = (Pawn)this.job.targetA.Thing;
                         Lord lord = pawn.GetLord();
                         if (lord != null)
                         {
                             lord.Notify_PawnAttemptArrested(pawn);
                         }
-                        GenClamor.DoClamor(pawn, 10f, ClamorType.Harm);
+                        ClamorDef newDef = new ClamorDef(); //I have no idea what this is gonna do. Needed for next line. 
+                        GenClamor.DoClamor(pawn, 10f, newDef);
 
                         if (Rand.Value < 0.1f)
                         {
+                            MessageTypeDef newMsgDef = new MessageTypeDef();
                             Messages.Message("MessageRefusedArrest".Translate(new object[]
                             {
         pawn.LabelShort
-                            }), pawn, MessageSound.SeriousAlert);
+                            }), pawn, newMsgDef);
 
                             pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk, null, false, false, null);
                             IncidentWorker_Rebellion.removeLeadership(pawn);
                             pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderArrested"));
                             this.pawn.mindState.mentalStateHandler.CurState.RecoverFromState();
-                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.BadNonUrgent, pawn, null);
+                            Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.NegativeEvent, pawn, null);
                             this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                             
                         }
@@ -106,12 +108,12 @@ namespace Nandonalt_ColonyLeadership
             {
                 initAction = delegate
                 {
-                    if (this.CurJob.def.makeTargetPrisoner)
+                    if (this.job.def.makeTargetPrisoner)
                     {
                         this.pawn.mindState.mentalStateHandler.CurState.RecoverFromState();
                         IncidentWorker_Rebellion.removeLeadership(this.Takee);
                         this.Takee.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderArrested"));
-                        Find.LetterStack.ReceiveLetter("LeaderEndLetterArrested".Translate(), "LeaderEndLetterDescArrested".Translate(new object[] { Takee.Name.ToStringFull }), LetterDefOf.BadNonUrgent, this.pawn, null);
+                        Find.LetterStack.ReceiveLetter("LeaderEndLetterArrested".Translate(), "LeaderEndLetterDescArrested".Translate(new object[] { Takee.Name.ToStringFull }), LetterDefOf.NegativeEvent, this.pawn, null);
                         foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
                         {
                             if (p != this.Takee)
@@ -121,9 +123,9 @@ namespace Nandonalt_ColonyLeadership
                             }
                         }
 
-                        if (this.Takee.guest.released)
+                        if (this.Takee.guest.Released)
                         {
-                            this.Takee.guest.released = false;
+                            this.Takee.guest.Released = false;
                             this.Takee.guest.interactionMode = PrisonerInteractionModeDefOf.NoInteraction;
                         }
                         if (!this.Takee.IsPrisonerOfColony)
@@ -165,7 +167,7 @@ namespace Nandonalt_ColonyLeadership
                     if (!this.DropBed.Destroyed && (this.DropBed.owners.Contains(this.Takee) || (this.DropBed.Medical && this.DropBed.AnyUnoccupiedSleepingSlot) || this.Takee.ownership == null))
                     {
                         this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);
-                        if (this.Takee.RaceProps.Humanlike && this.CurJob.def != JobDefOf.Arrest && !this.Takee.IsPrisonerOfColony)
+                        if (this.Takee.RaceProps.Humanlike && this.job.def != JobDefOf.Arrest && !this.Takee.IsPrisonerOfColony)
                         {
                             this.Takee.relations.Notify_RescuedBy(this.pawn);
                         }
@@ -177,6 +179,11 @@ namespace Nandonalt_ColonyLeadership
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
+        }
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            throw new NotImplementedException();
         }
     }
 }

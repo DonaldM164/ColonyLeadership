@@ -10,6 +10,8 @@ namespace Nandonalt_ColonyLeadership
 {
     public class ITab_LessonSchedule : ITab
     {
+        static MessageTypeDef nullSound = new MessageTypeDef();
+
         public static Vector2 CardSize = new Vector2(350f, 350f);
         private static float hourWidth;
 
@@ -159,11 +161,11 @@ namespace Nandonalt_ColonyLeadership
                     if (hasSkill)
                     {
                         spot.teachers[index] = p;
-                        if(report != "")Messages.Message(report, TargetInfo.Invalid, MessageSound.Standard);
+                        if(report != "")Messages.Message(report, TargetInfo.Invalid, nullSound);
                     }                
                     else {
                         spot.teachers[index] = null;
-                        Messages.Message(report, TargetInfo.Invalid, MessageSound.RejectInput); }
+                        Messages.Message(report, TargetInfo.Invalid, nullSound); }
                   
                 }, MenuOptionPriority.Default, null, null, 0f, null, null));
             }
@@ -191,7 +193,7 @@ namespace Nandonalt_ColonyLeadership
                 if (Widgets.ButtonInvisible(rect))
                 {
                     spot.seasonSchedule[day] = (spot.seasonSchedule[day] % 4) + 1;
-                    SoundDefOf.DesignateDragStandardChanged.PlayOneShotOnCamera();
+                    SoundDefOf.Designate_DragStandard_Changed.PlayOneShotOnCamera();
                     //p.timetable.SetAssignment(hour, this.selectedAssignment);
 
                 }

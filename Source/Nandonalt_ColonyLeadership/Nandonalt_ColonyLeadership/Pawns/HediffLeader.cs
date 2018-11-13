@@ -28,7 +28,7 @@ namespace Nandonalt_ColonyLeadership
             get
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                if (!Utility.isDictatorship) { stringBuilder.AppendLine("TimeLeftL".Translate() + (ticksLeader.ToStringTicksToPeriod(true))); }
+                if (!Utility.isDictatorship) { stringBuilder.AppendLine("TimeLeftL".Translate() + (ticksLeader.ToStringTicksToPeriod())); }
                     stringBuilder.AppendLine("----------");
                     stringBuilder.Append(base.TipStringExtra); 
                 return stringBuilder.ToString();
@@ -39,7 +39,8 @@ namespace Nandonalt_ColonyLeadership
         {
             if (!isThisExpired())
             {
-                Messages.Message("LeaderDied".Translate(new object[] { this.def.label, this.pawn.Name.ToStringFull }), MessageSound.Negative);
+                MessageTypeDef onlyWayToMakeCompileDef = new MessageTypeDef();
+                Messages.Message("LeaderDied".Translate(new object[] { this.def.label, this.pawn.Name.ToStringFull }), onlyWayToMakeCompileDef);
                 foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
                 {
                     int num2 = p.relations.OpinionOf(this.pawn);
@@ -100,7 +101,8 @@ namespace Nandonalt_ColonyLeadership
             if(ticksLeader == 0 && !Utility.isDictatorship)
             {
                 this.pawn.health.RemoveHediff(this);
-                Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.BadNonUrgent, this.pawn, null);
+                //This used to be: LetterDefOf.BadNonUrgent (or something like that, no longer exists as a def in rimworld). changed to NeutralEvent until we know what it does. 
+                Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.NeutralEvent, this.pawn, null);
             }
             if (!isThisExpired()) {
                 this.Severity = Mathf.Clamp(this.Need.CurLevel,0.01f, 1f);

@@ -22,7 +22,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Building_TeachingSpot)base.CurJob.GetTarget(TargetIndex.A).Thing;
+                return (Building_TeachingSpot)base.job.GetTarget(TargetIndex.A).Thing;
             }
         }
 
@@ -234,6 +234,11 @@ namespace Nandonalt_ColonyLeadership
             yield break;
 
 
+        }
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            throw new NotImplementedException();
         }
     }
 }

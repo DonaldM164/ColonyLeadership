@@ -31,16 +31,13 @@ namespace Nandonalt_ColonyLeadership
         public static void doUpdateNotes()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.3 - UPDATE!");
+            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.4 - UPDATE!");
             str.AppendLine("");
             str.AppendLine("What's new in 1.3:");
-            str.AppendLine("-> Updated for RimWorld Alpha 17");
-            str.AppendLine("-> (Dev Mode) Added a button to change government type");
-            str.AppendLine("-> Added keys for translation");
-            str.AppendLine("");
-            str.AppendLine("BUGFIXES:");
-            str.AppendLine("-> Fixed a few typos.");
-            str.AppendLine("-> Government types won't reset after changing home bases.");
+            str.AppendLine("-> Updated for RimWorld 1.0!");                        
+            str.AppendLine("CHANGES:");
+            str.AppendLine("-> Nerfed Attended Election mood event maximum stacks from 2 to 1.");
+            str.AppendLine("-> Nerfed many of the leader combat buffs.");
 
 
 

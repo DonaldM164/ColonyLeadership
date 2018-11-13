@@ -33,7 +33,7 @@ namespace Nandonalt_ColonyLeadership
 
         }
 
-        public override bool TryExecute(IncidentParms parms)
+        protected override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target;
 
@@ -52,14 +52,14 @@ namespace Nandonalt_ColonyLeadership
                         
             if (pawn != null && !pawn.Downed && !pawn.Dead)
             {
-                if (pawn.CurJob != null && pawn.jobs.curDriver.layingDown != LayingDownState.NotLaying)
+                if (pawn.CurJob != null && pawn.jobs.curDriver.asleep != true)
                 {
                     pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
                 }
                 pawn.mindState.mentalStateHandler.TryStartMentalState(DefDatabase<MentalStateDef>.GetNamed("Rebelling"), null, false, false, null);
                 String s = "He";
                 if (pawn.gender == Gender.Female) s = "She";
-                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.BadUrgent, pawn, null);
+                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.ThreatBig, pawn, null);
                 return true;
 
             }
