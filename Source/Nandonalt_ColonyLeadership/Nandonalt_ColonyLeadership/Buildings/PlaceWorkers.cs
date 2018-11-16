@@ -41,7 +41,6 @@ namespace Nandonalt_ColonyLeadership
 
     public class PlaceWorker_BallotBox : PlaceWorker
     {
-        Map ourMap;
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
@@ -62,6 +61,7 @@ namespace Nandonalt_ColonyLeadership
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
         {
+            Map ourMap = Find.CurrentMap;
             GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, ourMap).ToList<IntVec3>());
 
         }

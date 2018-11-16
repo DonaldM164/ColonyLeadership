@@ -15,31 +15,41 @@ namespace Nandonalt_ColonyLeadership
         
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            List<Pawn> pawns = new List<Pawn>();
-            pawns.AddRange(getAllColonists());
-            int count;
-            currentLeaders(out count);
-          
-            if (pawns.Count >= 5){
-                if (count < 1)
+          //  try
+           // {
+                List<Pawn> pawns = new List<Pawn>();
+                pawns.AddRange(getAllColonists());
+                int count;
+                currentLeaders(out count);
+
+                if (pawns.Count >= 5)
                 {
-                    ElectLeader(new List<Pawn>());
-                    ElectLeader(new List<Pawn>());
+                    if (count < 1)
+                    {
+                        ElectLeader(new List<Pawn>());
+                        ElectLeader(new List<Pawn>());
+                    }
+                    else if (count == 1)
+                    {
+                        ElectLeader(new List<Pawn>());
+                    }
                 }
-                else if (count == 1)
+                else
                 {
-                    ElectLeader(new List<Pawn>());
+                    if (count < 1)
+                    {
+                        ElectLeader(new List<Pawn>());
+                    }
                 }
-            }
-            else
+
+                return true;
+         //   }
+         /**   catch(Exception ex)
             {
-                if (count < 1)
-                {
-                    ElectLeader(new List<Pawn>());
-                }
+                System.IO.File.WriteAllText("C:/Logs/debugLog.txt", ex.Message.ToString());
+                return true;
             }
-      
-            return true;
+         **/
         }
 
         public List<Pawn> currentLeaders(out int count)
@@ -113,10 +123,7 @@ namespace Nandonalt_ColonyLeadership
                
             String targetLeader = null;
 
-      //      MessageTypeDef howToMakeSound = new MessageTypeDef();
             if (bestOf.NullOrEmpty() || canBeVoted.NullOrEmpty()) {
-
-       //         Messages.Message("NoColonistAbleLeader".Translate(), howToMakeSound);
 
                 Messages.Message("NoColonistAbleLeader".Translate(), MessageTypeDefOf.NegativeEvent);
 
@@ -168,8 +175,7 @@ namespace Nandonalt_ColonyLeadership
             
             if (toBeIgnored.Contains(pawn))
             {
-
-                //Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", howToMakeSound);
+                
 
                 Messages.Message("Something bad happened on the election code. Try adding the leaders manually using dev mode.", MessageTypeDefOf.NegativeEvent);
 
@@ -243,12 +249,10 @@ namespace Nandonalt_ColonyLeadership
 
         public static bool TryStartGathering(Map map)
         {
-         //   MessageTypeDef moreSound = new MessageTypeDef();
+        
             Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
             if (pawn == null)
-            {
-
-              //  Messages.Message("ElectionFail_ColonistsNotFound".Translate(), moreSound);
+            {              
 
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
 
@@ -257,8 +261,6 @@ namespace Nandonalt_ColonyLeadership
             IntVec3 intVec;
             if (!RCellFinder.TryFindPartySpot(pawn, out intVec))
             {
-
-            //    Messages.Message("Couldn't find a suitable safe spot for the election.", moreSound);
 
                 Messages.Message("Couldn't find a suitable safe spot for the election.", MessageTypeDefOf.RejectInput);
 

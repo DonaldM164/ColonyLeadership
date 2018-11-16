@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -27,6 +29,11 @@ namespace Nandonalt_ColonyLeadership
        
         public static String updateNotes = "";
 
+        //Uncomment for trace source debugging
+        //private static TraceSource _source = new TraceSource("DebugLog");
+
+        
+        
 
         public static void doUpdateNotes()
         {
@@ -37,7 +44,8 @@ namespace Nandonalt_ColonyLeadership
             str.AppendLine("-> Updated for RimWorld 1.0!");                        
             str.AppendLine("CHANGES:");
             str.AppendLine("-> Nerfed Attended Election mood event maximum stacks from 2 to 1.");
-            str.AppendLine("-> Nerfed many of the leader combat buffs.");
+            str.AppendLine("-> Nerfed many of the leader combat buffs (Until I figure out their new xml tags..).");
+            str.AppendLine("-> THIS UPDATE IS NOT BY THE ORIGINAL MOD CREATOR! I just updated parts that needed to be updated for 1.0");
 
 
 
@@ -58,13 +66,13 @@ namespace Nandonalt_ColonyLeadership
             }
             catch (Exception e)
             {
-
+                //File.WriteAllText("logt.txt", e.Message.ToString());
             }
 
             govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Leader".Translate()));
             govtypes.Add(new GovType("Dictatorship".Translate(), "DictatorshipDesc".Translate(), "Dictator".Translate()));
 
-            bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
+           bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
             if (flag)
             {
                 try
@@ -78,6 +86,7 @@ namespace Nandonalt_ColonyLeadership
                 }
                 catch (Exception ex)
                 {
+                    //File.WriteAllText("logt.txt", ex.Message.ToString());
                     Log.Error("Exception loading colony leadership userdata: " + ex.ToString());
                     Scribe.ForceStop();
                 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Verse;
 using RimWorld;
 using Verse.AI;
+using System.IO;
 
 namespace Nandonalt_ColonyLeadership
 {
@@ -35,40 +36,52 @@ namespace Nandonalt_ColonyLeadership
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            Map map = (Map)parms.target;
 
-            List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
-            List<Pawn> tpawns2 = new List<Pawn>();
+            //try
+            //{
 
-            foreach (Pawn current in pawns)
-            {
-                Hediff h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
-                        Hediff h2 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
-                Hediff h3 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
-                Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
-                if (h1 == null && h2 == null && h3 == null && h4 == null && current.Map == map) { tpawns2.Add(current); }
-            }
-            Pawn pawn = tpawns2.RandomElement(); 
-                        
-            if (pawn != null && !pawn.Downed && !pawn.Dead)
-            {
-                if (pawn.CurJob != null && pawn.jobs.curDriver.asleep != true)
+
+                Map map = (Map)parms.target;
+
+                List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
+                List<Pawn> tpawns2 = new List<Pawn>();
+
+                foreach (Pawn current in pawns)
                 {
-                    pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
+                    Hediff h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
+                    Hediff h2 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
+                    Hediff h3 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
+                    Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
+                    if (h1 == null && h2 == null && h3 == null && h4 == null && current.Map == map) { tpawns2.Add(current); }
                 }
-                pawn.mindState.mentalStateHandler.TryStartMentalState(DefDatabase<MentalStateDef>.GetNamed("Rebelling"), null, false, false, null);
-                String s = "He";
-                if (pawn.gender == Gender.Female) s = "She";
+                Pawn pawn = tpawns2.RandomElement();
 
-//                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.ThreatBig, pawn, null);
+                if (pawn != null && !pawn.Downed && !pawn.Dead)
+                {
+                    if (pawn.CurJob != null && pawn.jobs.curDriver.asleep != true)
+                    {
+                        pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, true);
+                    }
+                    pawn.mindState.mentalStateHandler.TryStartMentalState(DefDatabase<MentalStateDef>.GetNamed("Rebelling"), null, false, false, null);
+                    String s = "He";
+                    if (pawn.gender == Gender.Female) s = "She";
 
-                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.NegativeEvent, pawn, null);
+                    //                Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.ThreatBig, pawn, null);
 
-                return true;
+                    Find.LetterStack.ReceiveLetter("RebelLetter".Translate(), "RebelLetterDesc".Translate(new object[] { pawn.Name.ToStringShort }), LetterDefOf.NegativeEvent, pawn, null);
 
-            }
+                    return true;
 
-            return false;
+                }
+
+                return false;
+            /**}
+            catch (Exception ex)
+            {
+                System.IO.File.WriteAllText("C:/Logs/debugLog.txt", ex.Message.ToString());
+                
+                return false;
+            }**/
         }
     }
 }

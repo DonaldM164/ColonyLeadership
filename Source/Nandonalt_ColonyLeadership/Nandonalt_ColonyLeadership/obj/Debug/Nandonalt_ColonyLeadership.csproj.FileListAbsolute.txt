@@ -1,2 +1,4 @@
 C:\Users\Donald\Desktop\colL\ColonyLeadership\Assemblies\Nandonalt_ColonyLeadership.dll
 C:\Users\Donald\Desktop\colL\ColonyLeadership\Source\Nandonalt_ColonyLeadership\Nandonalt_ColonyLeadership\obj\Debug\Nandonalt_ColonyLeadership.dll
+C:\Users\Donald\Desktop\colL\ColonyLeadership\Source\Nandonalt_ColonyLeadership\Nandonalt_ColonyLeadership\obj\Debug\Nandonalt_ColonyLeadership.csprojResolveAssemblyReference.cache
+C:\Users\Donald\Desktop\colL\ColonyLeadership\Assemblies\Nandonalt_ColonyLeadership.dll.config
