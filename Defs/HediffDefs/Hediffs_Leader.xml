@@ -23,10 +23,9 @@
       <li>
 	   <minSeverity>0.00</minSeverity>
          <label>Level 1</label>
-         <statOffsets>		
+         <statOffsets>
+		  <NegotiationAbility>+0.05</NegotiationAbility>
 		  <TradePriceImprovement>+0.05</TradePriceImprovement>
-		   <RecruitPrisonerChance>+0.05</RecruitPrisonerChance>
-		  <GiftImpact>+0.10</GiftImpact>		  
           <PlantWorkSpeed>+0.05</PlantWorkSpeed>
 		  <FoodPoisonChance>-0.05</FoodPoisonChance>
 		  <PlantHarvestYield>+0.05</PlantHarvestYield>
@@ -40,9 +39,8 @@
 	   <minSeverity>0.34</minSeverity>
         <label>Level 2</label>
           <statOffsets>
-		  <TradePriceImprovement>+0.10</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.10</RecruitPrisonerChance>
-		  <GiftImpact>+0.20</GiftImpact>		  
+		  <NegotiationAbility>+0.10</NegotiationAbility>
+		  <TradePriceImprovement>+0.10</TradePriceImprovement>		  
           <PlantWorkSpeed>+0.15</PlantWorkSpeed>
 		  <FoodPoisonChance>-0.15</FoodPoisonChance>
 		  <PlantHarvestYield>+0.15</PlantHarvestYield>
@@ -56,9 +54,8 @@
 	   <minSeverity>0.67</minSeverity>
         <label>Level 3</label>
           <statOffsets>
-		   <TradePriceImprovement>+0.15</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.15</RecruitPrisonerChance>
-		  <GiftImpact>+0.30</GiftImpact>  		  
+		  <NegotiationAbility>+0.15</NegotiationAbility>
+		   <TradePriceImprovement>+0.15</TradePriceImprovement>		  
           <PlantWorkSpeed>+0.35</PlantWorkSpeed>
 		  <FoodPoisonChance>-0.30</FoodPoisonChance>
 		  <PlantHarvestYield>+0.30</PlantHarvestYield>
@@ -81,17 +78,13 @@
       <li>
 	  	 <minSeverity>0.00</minSeverity>
          <label>Level 1</label>
-          <statOffsets>
-	
-	  <TradePriceImprovement>+0.05</TradePriceImprovement>
-		   <RecruitPrisonerChance>+0.05</RecruitPrisonerChance>
-		  <GiftImpact>+0.10</GiftImpact>
+         <statOffsets>
+	       <TradePriceImprovement>+0.05</TradePriceImprovement>
+		   <NegotiationAbility>+0.05</NegotiationAbility>
+		   <MoveSpeed>+0.10</MoveSpeed>
+		   <MeleeHitChance>+0.05</MeleeHitChance>
 		  
-  <MoveSpeed>+0.10</MoveSpeed>
-		  <ShootingAccuracy>+0.1</ShootingAccuracy>
-		  <MeleeHitChance>+0.05</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.05</MeleeWeapon_Cooldown>
-		  <MedicalTendQualityOffset>+0.05</MedicalTendQualityOffset>
+		   <MedicalTendQualityOffset>+0.05</MedicalTendQualityOffset>
           </statOffsets>
       </li>
 	  
@@ -100,12 +93,9 @@
         <label>Level 2</label>
           <statOffsets>
 		   <TradePriceImprovement>+0.10</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.10</RecruitPrisonerChance>
-		  <GiftImpact>+0.20</GiftImpact>
-          <MoveSpeed>+0.20</MoveSpeed>
-		  <ShootingAccuracy>+0.2</ShootingAccuracy>
-		  <MeleeHitChance>+0.15</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.10</MeleeWeapon_Cooldown>
+		   <NegotiationAbility>+0.10</NegotiationAbility>
+          <MoveSpeed>+0.20</MoveSpeed>		  
+		  <MeleeHitChance>+0.15</MeleeHitChance>		  
 		  <MedicalTendQualityOffset>+0.10</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -114,14 +104,11 @@
         <minSeverity>0.67</minSeverity>
         <label>Level 3</label>
           <statOffsets>
-		     <TradePriceImprovement>+0.15</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.15</RecruitPrisonerChance>
-		  <GiftImpact>+0.30</GiftImpact>		  
-          <MoveSpeed>+0.35</MoveSpeed>
-		  <ShootingAccuracy>+0.35</ShootingAccuracy>
-		  <MeleeHitChance>+0.30</MeleeHitChance>
-		  <MeleeWeapon_Cooldown>-0.30</MeleeWeapon_Cooldown>
-		  <MedicalTendQualityOffset>+0.25</MedicalTendQualityOffset>
+		     <TradePriceImprovement>+0.15</TradePriceImprovement>	
+			 <NegotiationAbility>+0.15</NegotiationAbility>			 
+             <MoveSpeed>+0.35</MoveSpeed>		     
+		     <MeleeHitChance>+0.30</MeleeHitChance>		  
+		     <MedicalTendQualityOffset>+0.25</MedicalTendQualityOffset>
           </statOffsets>
       </li>
 	  
@@ -139,8 +126,7 @@
          <label>Level 1</label>
          <statOffsets>		 
 	  <TradePriceImprovement>+0.05</TradePriceImprovement>
-		   <RecruitPrisonerChance>+0.05</RecruitPrisonerChance>
-		  <GiftImpact>+0.10</GiftImpact>
+	  <NegotiationAbility>+0.05</NegotiationAbility>
               <ConstructSuccessChance>+0.05</ConstructSuccessChance>
 		  <ConstructionSpeed>+0.10</ConstructionSpeed>
 		  <WorkSpeedGlobal>+0.10</WorkSpeedGlobal>
@@ -153,8 +139,7 @@
         <label>Level 2</label>
           <statOffsets>
 		   <TradePriceImprovement>+0.10</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.10</RecruitPrisonerChance>
-		  <GiftImpact>+0.20</GiftImpact>
+		   <NegotiationAbility>+0.10</NegotiationAbility>
           <ConstructSuccessChance>+0.15</ConstructSuccessChance>
 		  <ConstructionSpeed>+0.25</ConstructionSpeed>
 		  <WorkSpeedGlobal>+0.20</WorkSpeedGlobal>
@@ -167,8 +152,7 @@
         <label>Level 3</label>
           <statOffsets>
 		  <TradePriceImprovement>+0.15</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.15</RecruitPrisonerChance>
-		  <GiftImpact>+0.30</GiftImpact>	
+		  <NegotiationAbility>+0.15</NegotiationAbility>
           <ConstructSuccessChance>+0.30</ConstructSuccessChance>
 		  <ConstructionSpeed>+0.40</ConstructionSpeed>
 		  <WorkSpeedGlobal>+0.35</WorkSpeedGlobal>
@@ -189,8 +173,7 @@
          <label>Level 1</label>
          <statOffsets>	
 		   <TradePriceImprovement>+0.05</TradePriceImprovement>
-		   <RecruitPrisonerChance>+0.05</RecruitPrisonerChance>
-		  <GiftImpact>+0.10</GiftImpact>
+		   <NegotiationAbility>+0.05</NegotiationAbility>
           <ResearchSpeed>+0.10</ResearchSpeed>
 		  <PsychicSensitivity>-0.1</PsychicSensitivity>
 		  <MedicalSurgerySuccessChance>+0.05</MedicalSurgerySuccessChance>
@@ -204,8 +187,7 @@
         <label>Level 2</label>
           <statOffsets>
 		     <TradePriceImprovement>+0.10</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.10</RecruitPrisonerChance>
-		  <GiftImpact>+0.20</GiftImpact>
+			 <NegotiationAbility>+0.10</NegotiationAbility>
           <ResearchSpeed>+0.20</ResearchSpeed>
 		  <PsychicSensitivity>-0.2</PsychicSensitivity>
 		  <MedicalSurgerySuccessChance>+0.15</MedicalSurgerySuccessChance>
@@ -219,8 +201,7 @@
         <label>Level 3</label>
           <statOffsets>
 		    <TradePriceImprovement>+0.15</TradePriceImprovement>
-		  <RecruitPrisonerChance>+0.15</RecruitPrisonerChance>
-		  <GiftImpact>+0.30</GiftImpact>	
+			<NegotiationAbility>+0.15</NegotiationAbility>
           <ResearchSpeed>+0.35</ResearchSpeed>
 		  <PsychicSensitivity>-0.40</PsychicSensitivity>
 		  <MedicalSurgerySuccessChance>+0.3</MedicalSurgerySuccessChance>

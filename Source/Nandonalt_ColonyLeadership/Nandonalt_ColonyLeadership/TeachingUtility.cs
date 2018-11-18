@@ -35,7 +35,7 @@ namespace Nandonalt_ColonyLeadership
 
         public static Pawn DetermineTeacher(Map map)
         {
-            Pawn result = null;
+            //Pawn result = null;
             List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
             List<Pawn> tpawns = new List<Pawn>();
             foreach (Pawn current in pawns)

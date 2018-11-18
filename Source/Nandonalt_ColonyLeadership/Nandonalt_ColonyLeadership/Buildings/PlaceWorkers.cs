@@ -13,8 +13,12 @@ namespace Nandonalt_ColonyLeadership
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-            List<Thing> allBuildingsColonist = base.Map.listerThings.AllThings;
-            for (int i = 0; i < allBuildingsColonist.Count; i++)
+       
+
+            Map currentMap = Find.CurrentMap;
+            List<Thing> allBuildingsColonist = currentMap.listerThings.AllThings;
+
+            for (int i = 0; i < allBuildingsColonist.Count; i++) //me 
             {
                 Thing thing = allBuildingsColonist[i];
                 if (thing.def.defName == "TeachingSpot" || thing.def.defName == "TeachingSpot_Blueprint")
@@ -27,29 +31,38 @@ namespace Nandonalt_ColonyLeadership
         }
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
-        {
-            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, map).ToList<IntVec3>());
+        {        
 
+            Map currentMap = Find.CurrentMap;
+            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, currentMap).ToList<IntVec3>());
         }
 
-        public class PlaceWorker_BallotBox : PlaceWorker
+    }
+
+    public class PlaceWorker_BallotBox : PlaceWorker
+    {
+
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
 
-            public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+            List<Thing> allBuildingsColonist = map.listerThings.AllThings;
+            for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
 
-                List<Thing> allBuildingsColonist = base.Map.listerThings.AllThings;
-                for (int i = 0; i < allBuildingsColonist.Count; i++)
+                Thing thing = allBuildingsColonist[i];
+                if (thing.def.defName == "BallotBox" || thing.def.defName == "BallotBox_Blueprint")
                 {
-                    Thing thing = allBuildingsColonist[i];
-                    if (thing.def.defName == "BallotBox" || thing.def.defName == "BallotBox_Blueprint")
-                    {
-                        return new AcceptanceReport("OnlyOnePerColony".Translate(new object[] { thing.def.LabelCap }));
-                    }
+                    return new AcceptanceReport("OnlyOnePerColony".Translate(new object[] { thing.def.LabelCap }));
                 }
-
-                return true;
             }
+
+            return true;
+        }
+
+        public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
+        {
+            Map ourMap = Find.CurrentMap;
+            GenDraw.DrawFieldEdges(WatchBuildingUtility.CalculateWatchCells(def, center, rot, ourMap).ToList<IntVec3>());
 
         }
     }

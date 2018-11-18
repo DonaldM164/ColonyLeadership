@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Buildings>
+<Defs>
 
 
   <ThingDef Name="BuildingBaseCL" Abstract="True">
@@ -11,7 +11,7 @@
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>BuildingRubble</filthLeaving>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
   </ThingDef>
   
   <!--============================ Spots =============================-->
@@ -20,7 +20,7 @@
     <defName>TeachingSpot</defName>
     <label>Teacher Table</label>
 	  <thingClass>Nandonalt_ColonyLeadership.Building_TeachingSpot</thingClass>
-    <Description>Designates a spot where lessons will be held.</Description>
+    <description>Designates a spot where lessons will be held.</description>
     <tickerType>Rare</tickerType>	
     <graphicData>
       <texPath>ColonyLeadership/teaching_table</texPath>
@@ -37,7 +37,7 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
-    <AltitudeLayer>Building</AltitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
 	<hasInteractionCell>true</hasInteractionCell>
 	<castEdgeShadows>true</castEdgeShadows>
 	<fillPercent>0.5</fillPercent>
@@ -57,12 +57,11 @@
       <MaxHitPoints>150</MaxHitPoints>
       <Flammability>1.0</Flammability>
 	   <Beauty>5</Beauty>
-      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
 	      <LearningSpeedFactor>1</LearningSpeedFactor>
     </statBases>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
-    <DesignationCategory>LeadershipModTab</DesignationCategory>
-       <Passability>PassThroughOnly</Passability>
+    <designationCategory>LeadershipModTab</designationCategory>
+       <passability>PassThroughOnly</passability>
 	    <pathCost>70</pathCost>
 		
 		  <inspectorTabs>
@@ -138,10 +137,13 @@
 	    <Silver>25</Silver>
       </costList>
 	<designationCategory>LeadershipModTab</designationCategory>
-    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <minifiedDef>MinifiedThing</minifiedDef>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
 		</building>
+	<thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
     <comps>
 	   <li>	  
         <compClass>CompQuality</compClass>		
@@ -203,10 +205,13 @@
 	  <Silver>25</Silver>
       </costList>
 	<designationCategory>LeadershipModTab</designationCategory>
-    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <minifiedDef>MinifiedThing</minifiedDef>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
 		</building>
+	<thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
     <comps>
 	   <li>	  
         <compClass>CompQuality</compClass>		
@@ -228,7 +233,7 @@
     <defName>BallotBox</defName>
     <label>Ballot Box</label>
 	  <thingClass>Nandonalt_ColonyLeadership.Building_BallotBox</thingClass>
-    <Description>Elections will take place around this box. Build it on a safe, preferably indoor spot.</Description>
+    <description>Elections will take place around this box. Build it on a safe, preferably indoor spot.</description>
     <tickerType>Rare</tickerType>	
     <graphicData>
       <texPath>ColonyLeadership/ballot_box</texPath>
@@ -244,7 +249,7 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
-    <AltitudeLayer>Building</AltitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
  <rotatable>false</rotatable>
 	<fillPercent>0.5</fillPercent>
 	  <socialPropernessMatters>true</socialPropernessMatters>	
@@ -261,11 +266,10 @@
       <MaxHitPoints>150</MaxHitPoints>
       <Flammability>1.0</Flammability>
 	   <Beauty>0</Beauty>
-      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
    </statBases>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
-    <DesignationCategory>LeadershipModTab</DesignationCategory>
-       <Passability>PassThroughOnly</Passability>	    <pathCost>70</pathCost>
+    <designationCategory>LeadershipModTab</designationCategory>
+       <passability>PassThroughOnly</passability>	    <pathCost>70</pathCost>
 			 
     <building>
         <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
@@ -280,4 +284,4 @@
 		</placeWorkers>
   </ThingDef>
   
-</Buildings>
+</Defs>

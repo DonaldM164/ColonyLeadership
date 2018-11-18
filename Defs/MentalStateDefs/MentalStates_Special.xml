@@ -7,7 +7,7 @@
     <defName>Rebelling</defName>
     <label>Rebelling</label>
     <stateClass>Nandonalt_ColonyLeadership.MentalState_Rebelling</stateClass>
-    <category>Indulgent</category>
+    <category>Malicious</category>
     <minTicksBeforeRecovery>15000</minTicksBeforeRecovery>
     <recoveryMtbDays>0.2</recoveryMtbDays>
     <blockNormalThoughts>true</blockNormalThoughts>

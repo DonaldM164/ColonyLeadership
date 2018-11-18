@@ -22,7 +22,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Building_TeachingSpot)base.CurJob.GetTarget(TargetIndex.A).Thing;
+                return (Building_TeachingSpot)base.job.GetTarget(TargetIndex.A).Thing;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Nandonalt_ColonyLeadership
          
             this.FailOnDestroyedOrNull(TargetIndex.A);
 
-            yield return Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
+           // yield return Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
 
             yield return new Toil
             {
@@ -234,6 +234,15 @@ namespace Nandonalt_ColonyLeadership
             yield break;
 
 
+        }
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
+
+            
+            return true;
+            
         }
     }
 }

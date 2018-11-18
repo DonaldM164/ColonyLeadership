@@ -21,7 +21,7 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
-                return (Building_TeachingSpot)base.CurJob.GetTarget(TargetIndex.A).Thing;
+                return (Building_TeachingSpot)base.job.GetTarget(TargetIndex.A).Thing;
             }
         }
 
@@ -54,7 +54,7 @@ namespace Nandonalt_ColonyLeadership
             String leaderType = TeachingUtility.getLeaderType(teacher);
             if (leaderType == "leader1")
             {
-                if(teacher.skills.GetSkill(SkillDefOf.Growing).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Growing);
+                if(teacher.skills.GetSkill(SkillDefOf.Plants).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Plants);
                 if (teacher.skills.GetSkill(SkillDefOf.Medicine).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Medicine);
                 if (teacher.skills.GetSkill(SkillDefOf.Animals).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Animals);
              
@@ -100,7 +100,7 @@ namespace Nandonalt_ColonyLeadership
             this.EndOnDespawnedOrNull(Build, JobCondition.Incompletable);
 
 
-            yield return Toils_Reserve.Reserve(Spot, this.CurJob.def.joyMaxParticipants, 0, null);
+            yield return Toils_Reserve.Reserve(Spot, this.job.def.joyMaxParticipants, 0, null);
             Toil gotoPreacher;
             if (this.TargetC.HasThing)
             {
@@ -121,7 +121,9 @@ namespace Nandonalt_ColonyLeadership
             {
                 this.pawn.GainComfortFromCellIfPossible();
                 this.ticksLeftThisToil = 9999;
-                this.pawn.Drawer.rotator.FaceCell(TargetB.Cell);
+                //this.pawn.Drawer.rotator.FaceCell(TargetB.Cell); //Looks like original developer wanted pawn to face the cell. 
+                                                                    //Rotator doesn't exist anymore, not sure how to replace this 
+                                                                    //Functionality yet. 
 
                 //LEARN
                 Pawn actor = this.pawn;
@@ -160,18 +162,24 @@ return 1f + this.Spott.teacher.skills.GetSkill(d).Level;
                 }
                 if (this.TargetC.HasThing)
                 {
-                    if (Map.reservationManager.IsReserved(this.CurJob.targetC.Thing, Faction.OfPlayer))
-                        Map.reservationManager.Release(this.CurJob.targetC.Thing, pawn);
+                    if (Map.reservationManager.IsReservedByAnyoneOf(this.job.targetC.Thing, Faction.OfPlayer))
+                        Map.reservationManager.Release(this.job.targetC.Thing, pawn, this.job);
                 }
                 else
                 {
-                    if (Map.reservationManager.IsReserved(this.CurJob.targetC.Cell, Faction.OfPlayer))
-                        Map.reservationManager.Release(this.CurJob.targetC.Cell, this.pawn);
+                    if (Map.reservationManager.IsReservedByAnyoneOf(this.job.targetC.Cell, Faction.OfPlayer))
+                        Map.reservationManager.Release(this.job.targetC.Cell, this.pawn, this.job);
                 }
 
 
             });
             yield break;
+        }
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            Toils_Reserve.Reserve(Spot, this.job.def.joyMaxParticipants, 0, null);
+            return true;
         }
     }
 }

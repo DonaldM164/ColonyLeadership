@@ -34,7 +34,6 @@ namespace Nandonalt_ColonyLeadership
 
             this.forcePause = true;
             this.doCloseX = false;
-            this.closeOnEscapeKey = false;
             this.absorbInputAroundWindow = true;
             this.closeOnClickedOutside = false;
             this.chosenLeadership = ColonyLeadership.govtypes[0];

@@ -24,7 +24,7 @@ namespace Nandonalt_ColonyLeadership
         
             if (pawn.mindState.nextMoveOrderIsWait)
             {
-                Job job = new Job(JobDefOf.WaitWander);
+                Job job = new Job(JobDefOf.Wait_Wander);
                 job.expiryInterval = this.waitTicks.RandomInRange;
                 pawn.mindState.nextMoveOrderIsWait = false;
                 return job;
@@ -75,7 +75,7 @@ namespace Nandonalt_ColonyLeadership
             if (intVec.IsValid)
             {
                 pawn.mindState.nextMoveOrderIsWait = true;
-                pawn.Map.pawnDestinationManager.ReserveDestinationFor(pawn, intVec);
+                pawn.Map.pawnDestinationReservationManager.Reserve(pawn, pawn.CurJob, intVec);
                 return new Job(JobDefOf.GotoWander, intVec);
             }
             return null;

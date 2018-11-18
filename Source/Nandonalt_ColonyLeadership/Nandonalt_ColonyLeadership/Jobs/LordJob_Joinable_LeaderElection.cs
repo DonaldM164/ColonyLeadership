@@ -12,6 +12,7 @@ namespace Nandonalt_ColonyLeadership
 
         private Trigger_TicksPassed timeoutTrigger;
 
+        MessageTypeDef nullSound = new MessageTypeDef();
 
         public LordJob_Joinable_LeaderElection()
         {
@@ -32,13 +33,13 @@ namespace Nandonalt_ColonyLeadership
             Transition transition = new Transition(lordToil_Party, lordToil_End);
             transition.AddTrigger(new Trigger_TickCondition(() => this.ShouldBeCalledOff()));
             transition.AddTrigger(new Trigger_PawnLostViolently());
-            transition.AddPreAction(new TransitionAction_Message("ElectionFail_Disaster".Translate(), MessageSound.Negative, new TargetInfo(this.spot, base.Map, false)));
+            transition.AddPreAction(new TransitionAction_Message("ElectionFail_Disaster".Translate(), nullSound, new TargetInfo(this.spot, base.Map, false)));
             stateGraph.AddTransition(transition);
             this.timeoutTrigger = new Trigger_TicksPassed(Rand.RangeInclusive(5000, 8000));
             Transition transition2 = new Transition(lordToil_Party, lordToil_End);
             transition2.AddTrigger(this.timeoutTrigger);
 
-            transition2.AddPreAction(new TransitionAction_Message("ElectionFinished".Translate(), MessageSound.Negative, new TargetInfo(this.spot, base.Map, false)));
+            transition2.AddPreAction(new TransitionAction_Message("ElectionFinished".Translate(), nullSound, new TargetInfo(this.spot, base.Map, false)));
             transition2.AddPreAction(new TransitionAction_Custom(new Action(delegate
             {
                 this.Finished();
@@ -67,12 +68,12 @@ namespace Nandonalt_ColonyLeadership
             if (num != 0)
             {
            
-                IncidentParms parms = StorytellerUtility.DefaultParmsNow(Find.Storyteller.def, IncidentDef.Named("LeaderElection").category, this.Map);
+                IncidentParms parms = StorytellerUtility.DefaultParmsNow(IncidentDef.Named("LeaderElection").category, this.Map);
                 IncidentDef.Named("LeaderElection").Worker.TryExecute(parms);
             }
             else
             {
-                Messages.Message("ElectionNoAttendees".Translate(), MessageSound.Negative);
+                Messages.Message("ElectionNoAttendees".Translate(), nullSound);
             }
         }
 
