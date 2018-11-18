@@ -178,7 +178,8 @@ return 1f + this.Spott.teacher.skills.GetSkill(d).Level;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            throw new NotImplementedException();
+            Toils_Reserve.Reserve(Spot, this.job.def.joyMaxParticipants, 0, null);
+            return true;
         }
     }
 }

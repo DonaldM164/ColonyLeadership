@@ -66,6 +66,11 @@
           <statOffsets>
           <MoveSpeed>+0.10</MoveSpeed>
 		  <MeleeHitChance>+0.05</MeleeHitChance>
+		  <AccuracyTouch>+0.10</AccuracyTouch>
+		  <AccuracyShort>+0.10</AccuracyShort>		  
+		  <AccuracyMedium>+0.10</AccuracyMedium>
+		  <AccuracyLong>+0.10</AccuracyLong>
+		  <MeleeWeapon_CooldownMultiplier>0.975</MeleeWeapon_CooldownMultiplier>
 		  <MedicalTendQualityOffset>+0.05</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -76,6 +81,11 @@
           <statOffsets>
           <MoveSpeed>+0.20</MoveSpeed>
 		  <MeleeHitChance>+0.15</MeleeHitChance>
+		  <AccuracyTouch>+0.15</AccuracyTouch>
+		  <AccuracyShort>+0.15</AccuracyShort>		  
+		  <AccuracyMedium>+0.15</AccuracyMedium>
+		  <AccuracyLong>+0.15</AccuracyLong>
+		  <MeleeWeapon_CooldownMultiplier>0.95</MeleeWeapon_CooldownMultiplier>
 		  <MedicalTendQualityOffset>+0.10</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -86,6 +96,11 @@
           <statOffsets>
           <MoveSpeed>+0.30</MoveSpeed>
 		  <MeleeHitChance>+0.25</MeleeHitChance>
+		  <AccuracyTouch>+0.25</AccuracyTouch>
+		  <AccuracyShort>+0.25</AccuracyShort>		  
+		  <AccuracyMedium>+0.25</AccuracyMedium>
+		  <AccuracyLong>+0.25</AccuracyLong>
+		  <MeleeWeapon_CooldownMultiplier>0.925</MeleeWeapon_CooldownMultiplier>
 		  <MedicalTendQualityOffset>+0.20</MedicalTendQualityOffset>
           </statOffsets>
       </li>
@@ -94,7 +109,7 @@
     </stages>
   </HediffDef>
   
-      <HediffDef ParentName="LeaderAuraBase">
+    <HediffDef ParentName="LeaderAuraBase">
     <defName>leaderAura3</defName>
     <label>Leader Aura - Carpenter</label>
       <stages>
@@ -114,8 +129,8 @@
         <label>Level 2</label>
           <statOffsets>
           <ConstructSuccessChance>+0.15</ConstructSuccessChance>
-		  <ConstructionSpeed>+0.25</ConstructionSpeed>
-		  <WorkSpeedGlobal>+0.20</WorkSpeedGlobal>
+		  <ConstructionSpeed>+0.15</ConstructionSpeed>
+		  <WorkSpeedGlobal>+0.15</WorkSpeedGlobal>
 		  <MiningSpeed>+0.2</MiningSpeed>
           </statOffsets>
       </li>
@@ -124,9 +139,9 @@
        <minSeverity>0.67</minSeverity>
         <label>Level 3</label>
           <statOffsets>
-          <ConstructSuccessChance>+0.25</ConstructSuccessChance>
-		  <ConstructionSpeed>+0.35</ConstructionSpeed>
-		  <WorkSpeedGlobal>+0.30</WorkSpeedGlobal>
+          <ConstructSuccessChance>+0.20</ConstructSuccessChance>
+		  <ConstructionSpeed>+0.20</ConstructionSpeed>
+		  <WorkSpeedGlobal>+0.20</WorkSpeedGlobal>
 		  <MiningSpeed>+0.3</MiningSpeed>
           </statOffsets>
       </li>

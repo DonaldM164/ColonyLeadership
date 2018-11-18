@@ -81,8 +81,6 @@ namespace Nandonalt_ColonyLeadership
                             lord.Notify_PawnAttemptArrested(pawn);
                         }
 
-//                        ClamorDef newDef = new ClamorDef(); //I have no idea what this is gonna do. Needed for next line. 
- //                       GenClamor.DoClamor(pawn, 10f, newDef);
 
                         GenClamor.DoClamor(pawn, 10f, ClamorDefOf.Harm);
 
@@ -187,7 +185,8 @@ namespace Nandonalt_ColonyLeadership
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            throw new NotImplementedException();
+            return true;
+            
         }
     }
 }

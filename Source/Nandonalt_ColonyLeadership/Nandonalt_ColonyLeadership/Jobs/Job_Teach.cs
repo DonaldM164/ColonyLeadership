@@ -67,7 +67,7 @@ namespace Nandonalt_ColonyLeadership
          
             this.FailOnDestroyedOrNull(TargetIndex.A);
 
-            yield return Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
+           // yield return Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
 
             yield return new Toil
             {
@@ -238,7 +238,11 @@ namespace Nandonalt_ColonyLeadership
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            throw new NotImplementedException();
+            Toils_Reserve.Reserve(SpotIndex, 1, -1, null);
+
+            
+            return true;
+            
         }
     }
 }
