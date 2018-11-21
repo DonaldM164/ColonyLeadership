@@ -87,7 +87,7 @@ namespace Nandonalt_ColonyLeadership
 
                         if (Rand.Value < 0.1f)
                         {
-                            MessageTypeDef newMsgDef = new MessageTypeDef();
+                           
                             Messages.Message("MessageRefusedArrest".Translate(new object[]
                             {pawn.LabelShort}), pawn, MessageTypeDefOf.NegativeEvent);
 

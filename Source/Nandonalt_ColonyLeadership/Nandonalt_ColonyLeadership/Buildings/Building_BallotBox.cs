@@ -13,8 +13,7 @@ namespace Nandonalt_ColonyLeadership
     {
         public List<int> allowedDays = new List<int>(new int[] { 0, 6, 14 }); //Means day 1, 7 and 15 on a season
         public bool allowElection = true;
-        public int lastElectionTick = -99999;
-        MessageTypeDef nullSound = new MessageTypeDef();
+        public int lastElectionTick = -99999;        
 
         protected virtual List<Pawn> getLeaders()
         {
@@ -185,6 +184,7 @@ namespace Nandonalt_ColonyLeadership
                     return false;
                 }
             }
+            
             if (map.dangerWatcher.DangerRating != StoryDanger.None)
             {
                 return false;

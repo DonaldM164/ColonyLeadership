@@ -39,8 +39,8 @@ namespace Nandonalt_ColonyLeadership
         {
             if (!isThisExpired())
             {
-                MessageTypeDef onlyWayToMakeCompileDef = new MessageTypeDef();
-                Messages.Message("LeaderDied".Translate(new object[] { this.def.label, this.pawn.Name.ToStringFull }), onlyWayToMakeCompileDef);
+                
+                Messages.Message("LeaderDied".Translate(new object[] { this.def.label, this.pawn.Name.ToStringFull }), MessageTypeDefOf.PawnDeath);
                 foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
                 {
                     int num2 = p.relations.OpinionOf(this.pawn);
