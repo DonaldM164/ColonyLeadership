@@ -113,8 +113,6 @@ namespace Nandonalt_ColonyLeadership
             if (pawn == null)
             {
 
-//                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), nullSound);
-
                 Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
 
                 return false;

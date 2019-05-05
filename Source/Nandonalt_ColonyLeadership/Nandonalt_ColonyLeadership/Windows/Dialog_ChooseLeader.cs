@@ -38,8 +38,8 @@ namespace Nandonalt_ColonyLeadership
                 this.doCloseX = true;
                 this.absorbInputAroundWindow = false;
                 this.closeOnClickedOutside = true;
-            this.chosenPawn = null;
-                 }
+                this.chosenPawn = null;
+            }
 
             public override void DoWindowContents(Rect inRect)
             {

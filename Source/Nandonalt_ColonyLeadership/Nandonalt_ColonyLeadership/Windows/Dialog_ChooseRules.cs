@@ -58,10 +58,10 @@ namespace Nandonalt_ColonyLeadership
                 {
                     list.Add(new FloatMenuOption(gov.name, delegate
                     {
-                    this.chosenLeadership = gov;
+                        this.chosenLeadership = gov;
                     }, MenuOptionPriority.Default, delegate () { TooltipHandler.TipRegion(inRect, gov.desc); }, null, 0f, null, null));
                 }
-                Find.WindowStack.Add(new FloatMenu(list));
+                Find.WindowStack.Add(new FloatMenu(list, "Government Types", false));
             }
 
             listing_Standard.Gap(24f);

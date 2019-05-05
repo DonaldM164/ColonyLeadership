@@ -119,13 +119,26 @@ namespace Nandonalt_ColonyLeadership
         {
             get
             {
+                if (Prefs.DevMode)
+                {
+                    return new Vector2(700f, 300f);
+                }
                 return new Vector2(500f, 250f);
             }
         }
          
-
+        private Dialog_MessageBox getHelpWindow()
+        {
+            return new Dialog_MessageBox(ColonyLeadership.helpNotes, "Done", null, null, null, null, false);
+        }
         public override void DoWindowContents(Rect fillRect)
         {
+            if (Prefs.DevMode) //Used to accomodate RequestedTabSize (Not sure if this is needed yet).
+            {
+                fillRect.width = fillRect.width + 200f;
+                fillRect.height = fillRect.height + 50f;
+            }
+
             base.DoWindowContents(fillRect);
             this.BuildPawnList();
             // GenDraw.DrawRadiusRing(pawns[0].Position, 10f);
@@ -139,7 +152,14 @@ namespace Nandonalt_ColonyLeadership
             Text.Font = GameFont.Small;
             List<Pawn> pawnCount = new List<Pawn>();
             bool flag = false;
-             pawnCount.AddRange(getAllColonists());
+            pawnCount.AddRange(getAllColonists());
+
+            Rect questionMarkBtn = new Rect(fillRect.width - 50f, 5f, 40f, 40f);
+            if(Widgets.ButtonText(questionMarkBtn, "?", true, false, true))
+            {
+                Find.WindowStack.Add(getHelpWindow());
+            }
+
             if (Prefs.DevMode)
             {
                 if (this.pawns.NullOrEmpty())
@@ -154,7 +174,7 @@ namespace Nandonalt_ColonyLeadership
                 {
                     //if (flag == true && Find.VisibleMap != null)
                     //{
-                        Rect button = new Rect(90f, 5f, 150f, 40f);
+                        Rect button = new Rect(90f, 5f, 200f, 40f);
                         if (Widgets.ButtonText(button, "DEV: Reset Leadership Type", true, false, true))
                         {
                             Find.WindowStack.Add(new Dialog_ChooseRules());
@@ -203,7 +223,7 @@ namespace Nandonalt_ColonyLeadership
 
 
 
-            Rect button3 = new Rect(250f, 5f, 100f, 40f);
+            Rect button3 = new Rect(300f, 5f, 150f, 40f);
             String stg = "DEV: Add Leader";
             if (Utility.isDictatorship) stg = "SetDictator".Translate();
             if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0)) && Widgets.ButtonText(button3, stg, true, false, true))
@@ -212,7 +232,7 @@ namespace Nandonalt_ColonyLeadership
             }
 
 
-            Rect button2 = new Rect(360f, 5f, 100f, 40f);
+            Rect button2 = new Rect(460f, 5f, 150f, 40f);
             if (Prefs.DevMode && Widgets.ButtonText(button2, "DEV: Purge Leaders", true, false, true))
             {
                 foreach(Pawn p in getAllColonists())
