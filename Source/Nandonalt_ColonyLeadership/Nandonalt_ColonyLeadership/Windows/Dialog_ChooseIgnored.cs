@@ -16,7 +16,7 @@ namespace Nandonalt_ColonyLeadership
             protected string curName;
             public List<Pawn> ignoreTemp;
             public List<TempPawn> tempPawnList = new List<TempPawn>();
-        public int MaxSize;
+            public int MaxSize;
             public int MinSize;
             public string MaxSizebuf;
             public string MinSizebuf;

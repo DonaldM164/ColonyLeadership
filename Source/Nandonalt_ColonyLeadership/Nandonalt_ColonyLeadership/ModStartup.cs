@@ -28,6 +28,7 @@ namespace Nandonalt_ColonyLeadership
         #endregion
        
         public static String updateNotes = "";
+        public static String helpNotes = "";
 
         //Uncomment for trace source debugging
         //private static TraceSource _source = new TraceSource("DebugLog");
@@ -38,20 +39,41 @@ namespace Nandonalt_ColonyLeadership
         public static void doUpdateNotes()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.4 - UPDATE!");
+            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.5 - UPDATE!");
             str.AppendLine("");
-            str.AppendLine("What's new in 1.3:");
-            str.AppendLine("-> Updated for RimWorld 1.0!");                        
-            str.AppendLine("CHANGES:");
-            str.AppendLine("-> Nerfed Attended Election mood event maximum stacks from 2 to 1.");
-            str.AppendLine("-> Nerfed many of the leader combat buffs (Until I figure out their new xml tags..).");
-            str.AppendLine("-> THIS UPDATE IS NOT BY THE ORIGINAL MOD CREATOR! I just updated parts that needed to be updated for 1.0");
+            str.AppendLine("What's new in 1.5:");                       
+            str.AppendLine("  -  Resolved warning messages on startup.");
+            str.AppendLine("     -> Special thanks to BlueTressym for finding the correct sounddef name for bullet metal impact.");
+            str.AppendLine("  - Menu's in Dev mode were made larger so complete button text would be visisble.");
+            str.AppendLine("-> This Update is brought to you by McKay");
+            str.AppendLine("-> Please support the original author! Nandonalt - https://www.patreon.com/nandonalt");
 
 
 
             updateNotes = str.ToString();
 
          
+        }
+
+        public static void doHelpNotes()
+        {
+            StringBuilder str = new StringBuilder();
+
+            str.AppendLine("FAQ:");
+            str.AppendLine(" - How do I switch government types?");
+            str.AppendLine("    -> Enter Development mode, and proceed to the Leadership Menu at the bottom ");
+            str.AppendLine("       of the screen. From there, you will see that there are several new buttons");
+            str.AppendLine("       prepended with DEV. Simply select the button that says Reset Leadership Type.");
+            str.AppendLine("");
+            str.AppendLine(" - My Colonists are gathering for elections but they don't actually vote, what's going on?");
+            str.AppendLine("    -> Check your job schedule, if a colonist is scheduled to switch from one task to another");
+            str.AppendLine("       during elections, they'll leave the election in progress and won't vote. It helps to set");
+            str.AppendLine("       their work schedule to Any during elections.");
+            str.AppendLine("");
+            str.AppendLine("If you have any problems, comment on the steam workshop page and I'll do my best to address them!");
+            str.AppendLine(" - McKay");
+
+            helpNotes = str.ToString();
         }
 
 
@@ -97,6 +119,7 @@ namespace Nandonalt_ColonyLeadership
                 DefDatabase<MainButtonDef>.GetNamed("LeaderTab").label = "(!) " + "LeadershipTab".Translate();
                 doUpdateNotes();
             }
+            doHelpNotes();
         }
         public static void Save()
         {
