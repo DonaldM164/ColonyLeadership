@@ -32,6 +32,8 @@ namespace Nandonalt_ColonyLeadership
 
         private static readonly Texture2D Icon_Star = ContentFinder<Texture2D>.Get("ColonyLeadership/star", true);
 
+        private static readonly Texture2D Icon_Inspired = ContentFinder<Texture2D>.Get("UI/Icons/ColonistBar/Inspired", true);
+
 
         private ColonistBar ColonistBar
         {
@@ -94,7 +96,7 @@ namespace Nandonalt_ColonyLeadership
             else if (colonist.mindState.IsIdle && GenDate.DaysPassed >= 1)
             {
                 this.DrawIcon(Icon_Idle, ref vector, "ActivityIconIdle".Translate());
-            }           
+            }
             else if (Leader != null)
             {
                 this.DrawIcon(Icon_Star, ref vector, Leader.LabelBase);
@@ -104,7 +106,12 @@ namespace Nandonalt_ColonyLeadership
             {
                 this.DrawIcon(Icon_Burning, ref vector, "ActivityIconBurning".Translate());
             }
-         
+
+            else if (colonist.Inspired)
+            {
+                this.DrawIcon(Icon_Inspired, ref vector, colonist.InspirationDef.LabelCap);
+            }
+
         }
 
         private void DrawIcon(Texture2D icon, ref Vector2 pos, string tooltip)
