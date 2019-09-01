@@ -57,6 +57,7 @@
     <Compile Include="GameComponent\GameComponent_ColonyLeadership.cs" />
     <Compile Include="Pawns\ThoughtWorker_Unliked.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Windows\Dialog_ChooseIgnoredGroup.cs" />
     <Compile Include="Windows\Dialog_ChooseLeader.cs" />
     <Compile Include="Windows\Dialog_ChooseIgnored.cs" />
     <Compile Include="Pawns\HediffLeader.cs" />

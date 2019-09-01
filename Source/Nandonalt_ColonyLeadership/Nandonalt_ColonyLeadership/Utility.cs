@@ -43,5 +43,16 @@ namespace Nandonalt_ColonyLeadership
                 return false;
             }
         }
+
+
+        public static bool isMonarchy
+        {
+            get
+            {
+                GameComponent_ColonyLeadership comp = getCLComp();
+                if (comp != null && comp.chosenLeadership.name == "Monarchy".Translate()) return true;
+                return false;
+            }
+        }
     }
 }

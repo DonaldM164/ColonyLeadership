@@ -21,7 +21,7 @@ namespace Nandonalt_ColonyLeadership
 
         #region Variables
         public static String lastReadVersion = "none";
-        public static String newVersion = "v1.3";        
+        public static String newVersion = "v1.5";        
         public static List<GovType> govtypes = new List<GovType>();
         public static GovType tempGov = null;
         public static GameInfo gameInfoTemp = null;
@@ -33,26 +33,25 @@ namespace Nandonalt_ColonyLeadership
         //Uncomment for trace source debugging
         //private static TraceSource _source = new TraceSource("DebugLog");
 
-        
-        
+
+
 
         public static void doUpdateNotes()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.5 - UPDATE!");
+            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.5.1 - UPDATE!");
             str.AppendLine("");
-            str.AppendLine("What's new in 1.5:");                       
-            str.AppendLine("  -  Resolved warning messages on startup.");
-            str.AppendLine("     -> Special thanks to BlueTressym for finding the correct sounddef name for bullet metal impact.");
-            str.AppendLine("  - Menu's in Dev mode were made larger so complete button text would be visisble.");
-            str.AppendLine("-> This Update is brought to you by McKay");
+            str.AppendLine("What's new:");
+            str.AppendLine("  - Resolved issue where colonist leadership icon was blocking inspiration icon");
+            str.AppendLine("     -> Special thanks to Lethe for finding the fix.");
+            str.AppendLine("  - Resolved issue where caravan traders were attending lessons");
+            str.AppendLine("  - Future releases will be on adding new leadership types (Monarchy, Republic)");
+            str.AppendLine("");
+            str.AppendLine("-> This Update is brought to you by McKay, please report any bugs! ");
             str.AppendLine("-> Please support the original author! Nandonalt - https://www.patreon.com/nandonalt");
-
-
 
             updateNotes = str.ToString();
 
-         
         }
 
         public static void doHelpNotes()
@@ -80,8 +79,6 @@ namespace Nandonalt_ColonyLeadership
         static ColonyLeadership()
         {
 
-        
-
             try
             {
                 Detour.Detours.TryDetourFromTo(typeof(ColonistBarColonistDrawer).GetMethod("DrawIcons", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance), typeof(Icon).GetMethod("DrawIconsModded"));
@@ -93,8 +90,10 @@ namespace Nandonalt_ColonyLeadership
 
             govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Leader".Translate()));
             govtypes.Add(new GovType("Dictatorship".Translate(), "DictatorshipDesc".Translate(), "Dictator".Translate()));
+            //govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Ruler".Translate()));
+            //govtypes.Add(new GovType("Monarchy".Translate(), "MonarchyDesc".Translate(), "Leader".Translate()));
 
-           bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
+            bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
             if (flag)
             {
                 try

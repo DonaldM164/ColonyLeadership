@@ -143,6 +143,7 @@ namespace Nandonalt_ColonyLeadership
                                                                                   x.CurJob.def != JobDefOf.BeatFire &&   
                                                                                   !spot.ignored.Contains(x) &&                                                                                                               
                                                                                   x.CurJob.def != JobDefOf.FleeAndCower && 
+                                                                                  (x.GetCaravan() == null || x.GetCaravan().IsPlayerControlled == true) &&
                                                                                   !x.InAggroMentalState && !x.InMentalState) ;
                 }
                 else
@@ -156,6 +157,7 @@ namespace Nandonalt_ColonyLeadership
                                                                                   x.CurJob.def != JobDefOf.Lovin && 
                                                                                   x.CurJob.def != JobDefOf.LayDown &&
                                                                                    !spot.ignored.Contains(x) &&
+                                                                                  (x.GetCaravan() == null || x.GetCaravan().IsPlayerControlled == true) &&
                                                                                   x.CurJob.def != JobDefOf.FleeAndCower && 
                                                                                   !x.InAggroMentalState && !x.InMentalState);
                 }

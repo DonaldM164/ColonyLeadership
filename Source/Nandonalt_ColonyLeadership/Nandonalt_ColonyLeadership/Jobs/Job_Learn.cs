@@ -75,7 +75,8 @@ namespace Nandonalt_ColonyLeadership
             else if(leaderType == "leader4")
             {
                 if (teacher.skills.GetSkill(SkillDefOf.Intellectual).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Intellectual);
-              
+                if (teacher.skills.GetSkill(SkillDefOf.Medicine).Level >= TeachingUtility.minSkill) this.skillPool.Add(SkillDefOf.Medicine);
+
             }
 
             if (this.skillPool.NullOrEmpty()) return false;
@@ -121,7 +122,7 @@ namespace Nandonalt_ColonyLeadership
             {
                 this.pawn.GainComfortFromCellIfPossible();
                 this.ticksLeftThisToil = 9999;
-                //this.pawn.Drawer.rotator.FaceCell(TargetB.Cell); //Looks like original developer wanted pawn to face the cell. 
+                this.pawn.Drawer.DrawAt(TargetB.CenterVector3);//.rotateToFace(TargetB.Cell);// rotator.FaceCell(TargetB.Cell); //Looks like original developer wanted pawn to face the cell. 
                                                                     //Rotator doesn't exist anymore, not sure how to replace this 
                                                                     //Functionality yet. 
 

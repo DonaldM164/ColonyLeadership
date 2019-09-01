@@ -12,7 +12,7 @@ namespace Nandonalt_ColonyLeadership
 {
     public class IncidentWorker_LeaderElection : IncidentWorker
     {
-        
+        private System.Random r = new System.Random();
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
           //  try
@@ -56,6 +56,7 @@ namespace Nandonalt_ColonyLeadership
         {
             List<Pawn> pawns = new List<Pawn>();
             int c = 0;
+            //Go through each pawn, if the pawn is currently a leader, add him to our list leaders. 
             foreach (Pawn current in getAllColonists())
             {
                 Hediff h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
@@ -71,7 +72,6 @@ namespace Nandonalt_ColonyLeadership
 
         public static List<Pawn> getAllColonists()
         {
-          
             List<Pawn> pawns = new List<Pawn>();
             pawns.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists);
             return pawns;
@@ -114,8 +114,7 @@ namespace Nandonalt_ColonyLeadership
             Pawn bestCarpenter = getBestOf(canBeVoted, getCarpenterScore);
             Pawn bestScientist = getBestOf(canBeVoted, getScientistScore);
 
-
-            if(bestBotanist != null) bestOf.Add(bestBotanist);
+            if (bestBotanist != null) bestOf.Add(bestBotanist);
             if (bestWarrior != null) bestOf.Add(bestWarrior);
             if (bestCarpenter != null) bestOf.Add(bestCarpenter);
             if (bestScientist != null) bestOf.Add(bestScientist);
@@ -132,21 +131,23 @@ namespace Nandonalt_ColonyLeadership
 
             foreach (Pawn current in pawns)
             {
-                Pawn temp = current;
+                Pawn votedForPawn = current;
                 int lastopinion = 0;
-                foreach (Pawn p2 in bestOf)
+
+                foreach (Pawn bestPawn in bestOf)
                 {
-                    if (p2 != current)
+                    if (bestPawn != current)
                     {
-                        int opinion = current.relations.OpinionOf(p2);
+                        int opinion = current.relations.OpinionOf(bestPawn);
                         if (opinion > lastopinion)
                         {
                             lastopinion = opinion;
-                            temp = p2;
+                            votedForPawn = bestPawn;
                         }
                     }
                 }
-                votes.Add(temp);
+
+                votes.Add(votedForPawn);
 
             }
 
@@ -157,8 +158,19 @@ namespace Nandonalt_ColonyLeadership
 
             Pawn pawn = most;
 
-            float maxValue = new float[] { getBotanistScore(most), getWarriorScore(most), getCarpenterScore(most), getScientistScore(most) }.Max() ;
-
+            float[] leaderAptitudes = new float[] { getBotanistScore(most), getWarriorScore(most), getCarpenterScore(most), getScientistScore(most) };
+            Array.Sort(leaderAptitudes);
+            float maxValue = leaderAptitudes[3];
+            float secondMax = leaderAptitudes[2];
+            float diff = maxValue - secondMax;
+            if (diff < 3)
+            {
+                double factor = rnd(0, 1);
+                if(factor > 0.60)
+                {
+                    maxValue = secondMax; //This will cause the leaders second most skilled proficiency to be their leadership type this election. 
+                }
+            }
             /*  if (most == bestBotanist && maxValue == getBotanistScore(most)) targetLeader = "leader1";
              if (most == bestWarrior && maxValue == getWarriorScore(most)) targetLeader = "leader2";
               if (most == bestCarpenter && maxValue == getCarpenterScore(most)) targetLeader = "leader3";
@@ -193,10 +205,11 @@ namespace Nandonalt_ColonyLeadership
             }
             doElect(pawn, hediff);
 
-
-           
-
             return true;
+        }
+        double rnd(double a, double b)
+        {
+            return a + r.NextDouble() * (b - a);
         }
 
         public static void doElect(Pawn pawn, Hediff hediff, bool forced = false)

@@ -75,12 +75,14 @@ namespace Nandonalt_ColonyLeadership
             HediffLeader h3 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
             HediffLeader h4 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
             HediffLeader h5 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leaderExpired"));
+            HediffLeader h6 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
 
-           if (h1 != null) current.health.RemoveHediff(h1);
+            if (h1 != null) current.health.RemoveHediff(h1);
             if (h2 != null) current.health.RemoveHediff(h2);
             if (h3 != null) current.health.RemoveHediff(h3);
             if (h4 != null) current.health.RemoveHediff(h4);
             if (h5 != null) current.health.RemoveHediff(h5);
+            if (h6 != null) current.health.RemoveHediff(h6);
             current.needs.AddOrRemoveNeedsAsAppropriate();
 
         }
@@ -96,8 +98,9 @@ namespace Nandonalt_ColonyLeadership
                 Hediff h2 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
                 Hediff h3 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
                 Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
-  
-                if (h1 != null || h2 != null || h3 != null || h4 != null ) { }
+                Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
+
+                if (h1 != null || h2 != null || h3 != null || h4 != null || h5 != null ) { }
                 else
                 {
                     tpawns.Add(current);
@@ -226,7 +229,8 @@ namespace Nandonalt_ColonyLeadership
             Rect button3 = new Rect(300f, 5f, 150f, 40f);
             String stg = "DEV: Add Leader";
             if (Utility.isDictatorship) stg = "SetDictator".Translate();
-            if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0)) && Widgets.ButtonText(button3, stg, true, false, true))
+            if (Utility.isMonarchy) stg = "SetRuler".Translate();
+            if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0) || (Utility.isMonarchy && pawns.Count() <=0)) && Widgets.ButtonText(button3, stg, true, false, true))
             {
                 Find.WindowStack.Add(new Dialog_ChooseLeader());
             }
@@ -279,6 +283,8 @@ namespace Nandonalt_ColonyLeadership
             h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
             if (h1 != null) return h1.Label;
             h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
+            if (h1 != null) return h1.Label;
+            h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
             if (h1 != null) return h1.Label;
             return "Error?";
         }
