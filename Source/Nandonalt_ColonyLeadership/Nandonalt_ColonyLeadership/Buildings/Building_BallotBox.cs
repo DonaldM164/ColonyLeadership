@@ -18,7 +18,7 @@ namespace Nandonalt_ColonyLeadership
         protected virtual List<Pawn> getLeaders()
         {
             List<Pawn> pawns = new List<Pawn>();
-            pawns.AddRange(IncidentWorker_LeaderElection.getAllColonists());
+            pawns.AddRange(IncidentWorker_SetLeadership.getAllColonists());
             List<Pawn> tpawns = new List<Pawn>();
             foreach (Pawn current in pawns)
             {
@@ -53,7 +53,7 @@ namespace Nandonalt_ColonyLeadership
                         List<Pawn> leaders = getLeaders();
                         List<Pawn> pawnCount = new List<Pawn>();
                         bool flag = false;
-                        pawnCount.AddRange(IncidentWorker_LeaderElection.getAllColonists());
+                        pawnCount.AddRange(IncidentWorker_SetLeadership.getAllColonists());
                         if (leaders.NullOrEmpty())
                         {
                             flag = true;
@@ -65,7 +65,7 @@ namespace Nandonalt_ColonyLeadership
 
 
                         List<Pawn> canBeVoted = new List<Pawn>();
-                        canBeVoted.AddRange(IncidentWorker_LeaderElection.getAllColonists());
+                        canBeVoted.AddRange(IncidentWorker_SetLeadership.getAllColonists());
                         List<Pawn> tpawns2 = new List<Pawn>();
                         foreach (Pawn current in canBeVoted)
                         {

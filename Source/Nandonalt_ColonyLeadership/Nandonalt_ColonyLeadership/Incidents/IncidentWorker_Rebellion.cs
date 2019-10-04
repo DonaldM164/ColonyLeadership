@@ -43,7 +43,7 @@ namespace Nandonalt_ColonyLeadership
 
                 Map map = (Map)parms.target;
 
-                List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
+                List<Pawn> pawns = IncidentWorker_SetLeadership.getAllColonists();
                 List<Pawn> tpawns2 = new List<Pawn>();
 
                 foreach (Pawn current in pawns)

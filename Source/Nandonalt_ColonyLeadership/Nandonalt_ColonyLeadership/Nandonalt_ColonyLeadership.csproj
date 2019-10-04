@@ -55,6 +55,7 @@
     <Compile Include="Detour\Icon.cs" />
     <Compile Include="GovTypes.cs" />
     <Compile Include="GameComponent\GameComponent_ColonyLeadership.cs" />
+    <Compile Include="Incidents\IncidentWorker_NewRuler.cs" />
     <Compile Include="Pawns\ThoughtWorker_Unliked.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Windows\Dialog_ChooseIgnoredGroup.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Pawns\HediffLeader.cs" />
     <Compile Include="Pawns\HediffLeaderAura.cs" />
     <Compile Include="Incidents\IncidentWorker_Rebellion.cs" />
-    <Compile Include="Incidents\IncidentWorker_LeaderElection.cs" />
+    <Compile Include="Incidents\IncidentWorker_SetLeadership.cs" />
     <Compile Include="Social Features\InteractionWorker_LeaderOnly.cs" />
     <Compile Include="Windows\Dialog_ChooseRules.cs" />
     <Compile Include="Windows\ITab_LessonSchedule.cs" />

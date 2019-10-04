@@ -83,7 +83,7 @@ namespace Nandonalt_ColonyLeadership
 
         public static Pawn getMostHatedLeaderBy(Pawn pawn)
         {
-            List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
+            List<Pawn> pawns = IncidentWorker_SetLeadership.getAllColonists();
             List<Pawn> tpawns2 = new List<Pawn>();
 
             foreach (Pawn current in pawns)

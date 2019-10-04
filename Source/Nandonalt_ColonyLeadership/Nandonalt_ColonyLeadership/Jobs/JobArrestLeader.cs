@@ -116,7 +116,7 @@ namespace Nandonalt_ColonyLeadership
                         IncidentWorker_Rebellion.removeLeadership(this.Takee);
                         this.Takee.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderArrested"));
                         Find.LetterStack.ReceiveLetter("LeaderEndLetterArrested".Translate(), "LeaderEndLetterDescArrested".Translate(new object[] { Takee.Name.ToStringFull }), LetterDefOf.NegativeEvent, this.pawn, null);
-                        foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
+                        foreach (Pawn p in IncidentWorker_SetLeadership.getAllColonists())
                         {
                             if (p != this.Takee)
                             {                              

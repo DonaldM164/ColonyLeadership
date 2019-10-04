@@ -16,7 +16,7 @@
   <!-- Monarchy -->
   <HediffDef ParentName="LeaderBase">
     <defName>ruler1</defName>
-    <Label>Ruler - King</label>
+    <label>Ruler - King</label>
     <causesNeed>LeaderLevel</causesNeed>
     
     <stages>

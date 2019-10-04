@@ -40,7 +40,7 @@ namespace Nandonalt_ColonyLeadership
             this.absorbInputAroundWindow = true;
             this.closeOnClickedOutside = true;
             this.spot = spot;
-            this.ignoreTemp = IncidentWorker_LeaderElection.getAllColonists();
+            this.ignoreTemp = IncidentWorker_SetLeadership.getAllColonists();
 
 
             foreach (Pawn p in this.ignoreTemp)

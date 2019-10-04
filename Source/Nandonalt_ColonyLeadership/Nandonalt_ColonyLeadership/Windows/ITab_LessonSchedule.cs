@@ -95,10 +95,10 @@ namespace Nandonalt_ColonyLeadership
                 listHours(spot);
             }
 
-            Rect button4= new Rect(rect.x + dist + 150f, rect.y + 135f, 140f, 30f);            
+            Rect button4= new Rect(rect.x + dist + 150f, rect.y + 135f, 140f, 30f);
             if (Widgets.ButtonText(button4, "IgnoreList".Translate(), true, false, true))
             {
-                Find.WindowStack.Add(new Dialog_ChooseIgnored(spot)); //
+                Find.WindowStack.Add(new Dialog_ChooseIgnored(spot)); 
             }
 
 
@@ -134,7 +134,7 @@ namespace Nandonalt_ColonyLeadership
             List<FloatMenuOption> list = new List<FloatMenuOption>();
             List<Pawn> tpawns = new List<Pawn>();
 
-            foreach (Pawn current in IncidentWorker_LeaderElection.getAllColonists())
+            foreach (Pawn current in IncidentWorker_SetLeadership.getAllColonists())
             {
                 Hediff h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
                 Hediff h2 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));

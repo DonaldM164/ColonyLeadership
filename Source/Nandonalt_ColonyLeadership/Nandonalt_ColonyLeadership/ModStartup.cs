@@ -90,9 +90,7 @@ namespace Nandonalt_ColonyLeadership
 
             govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Leader".Translate()));
             govtypes.Add(new GovType("Dictatorship".Translate(), "DictatorshipDesc".Translate(), "Dictator".Translate()));
-            //govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Ruler".Translate()));
-            //govtypes.Add(new GovType("Monarchy".Translate(), "MonarchyDesc".Translate(), "Leader".Translate()));
-
+            govtypes.Add(new GovType("Monarchy", "MonarchyDesc", "Ruler"));
             bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
             if (flag)
             {

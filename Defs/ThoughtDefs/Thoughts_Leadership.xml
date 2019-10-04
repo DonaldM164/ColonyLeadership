@@ -73,7 +73,51 @@
       </li>
     </stages>
   </ThoughtDef>
+ 
+   <!-- Monarchy Thoughts -->
+   <ThoughtDef>
+    <defName>NewRuler</defName>
+    <durationDays>15.0</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>Crowned</label>
+        <description>I was born for this, ruling is my destiny!</description>
+        <baseMoodEffect>20</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   
+  
+  <ThoughtDef>
+    <defName>BadRuler</defName>
+    <durationDays>5.0</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>Bad ruler</label>
+        <description>I'm supposed to trust them to rule us?</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  
+  <ThoughtDef>
+    <defName>CrownedRulerJealous</defName>
+    <durationDays>5.0</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>Jealous of new ruler</label>
+        <description>I know I could do better...</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   
    <ThoughtDef>
     <defName>ElectedLeader</defName>

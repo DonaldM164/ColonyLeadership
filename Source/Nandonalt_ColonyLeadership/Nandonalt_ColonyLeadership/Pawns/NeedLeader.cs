@@ -42,11 +42,11 @@ namespace Nandonalt_ColonyLeadership
             HediffLeader h2 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
             HediffLeader h3 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
             HediffLeader h4 = (HediffLeader)current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
-            float score = IncidentWorker_LeaderElection.getBotanistScore(current);
+            float score = IncidentWorker_SetLeadership.getBotanistScore(current);
 
-            if (h2 != null) { h1 = h2; score = IncidentWorker_LeaderElection.getWarriorScore(current); }
-            if (h3 != null) { h1 = h3; score = IncidentWorker_LeaderElection.getCarpenterScore(current); }
-            if (h4 != null) { h1 = h4; score = IncidentWorker_LeaderElection.getScientistScore(current); }
+            if (h2 != null) { h1 = h2; score = IncidentWorker_SetLeadership.getWarriorScore(current); }
+            if (h3 != null) { h1 = h3; score = IncidentWorker_SetLeadership.getCarpenterScore(current); }
+            if (h4 != null) { h1 = h4; score = IncidentWorker_SetLeadership.getScientistScore(current); }
 
             return ((score / 20f) * 0.3f) + 1f;
 
@@ -60,7 +60,7 @@ namespace Nandonalt_ColonyLeadership
             {
                 float totalOpinion = 0;
                 int totalPawns = 0;
-                foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
+                foreach (Pawn p in IncidentWorker_SetLeadership.getAllColonists())
                 {
                     if (p != this.pawn && !p.Dead)
                     {
@@ -138,7 +138,7 @@ namespace Nandonalt_ColonyLeadership
                     if (Rand.MTBEventOccurs(mtb, 60000f, 150f))
                     {
                         bool flag = false;
-                        foreach (Pawn pa in IncidentWorker_LeaderElection.getAllColonists())
+                        foreach (Pawn pa in IncidentWorker_SetLeadership.getAllColonists())
                         {
                             if (pa != null && pa.MentalState != null && pa.MentalState.def == DefDatabase<MentalStateDef>.GetNamed("Rebelling")) flag = true;
                         }

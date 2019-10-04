@@ -100,7 +100,8 @@ namespace Nandonalt_ColonyLeadership
                 Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
                 Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
 
-                if (h1 != null || h2 != null || h3 != null || h4 != null || h5 != null ) { }
+                //if (h1 != null || h2 != null || h3 != null || h4 != null || h5 != null) { }
+                if (h1 != null || h2 != null || h3 != null || h4 != null) { }
                 else
                 {
                     tpawns.Add(current);
@@ -229,12 +230,19 @@ namespace Nandonalt_ColonyLeadership
             Rect button3 = new Rect(300f, 5f, 150f, 40f);
             String stg = "DEV: Add Leader";
             if (Utility.isDictatorship) stg = "SetDictator".Translate();
+
+
             if (Utility.isMonarchy) stg = "SetRuler".Translate();
-            if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0) || (Utility.isMonarchy && pawns.Count() <=0)) && Widgets.ButtonText(button3, stg, true, false, true))
+            if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0) || (Utility.isMonarchy && pawns.Count() <= 0)) && Widgets.ButtonText(button3, stg, true, false, true))
             {
                 Find.WindowStack.Add(new Dialog_ChooseLeader());
             }
-
+            
+            //if ((Prefs.DevMode || (Utility.isDictatorship && pawns.Count() <= 0)) && Widgets.ButtonText(button3, stg, true, false, true))
+            //{
+            //    Find.WindowStack.Add(new Dialog_ChooseLeader());
+            //}
+            
 
             Rect button2 = new Rect(460f, 5f, 150f, 40f);
             if (Prefs.DevMode && Widgets.ButtonText(button2, "DEV: Purge Leaders", true, false, true))

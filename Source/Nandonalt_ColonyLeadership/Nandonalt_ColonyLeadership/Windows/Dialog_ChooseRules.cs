@@ -71,9 +71,9 @@ namespace Nandonalt_ColonyLeadership
                 if (comp != null) comp.chosenLeadership = this.chosenLeadership;
                 if (comp != null) comp.chosenGov = ColonyLeadership.govtypes.IndexOf(this.chosenLeadership);
                 Find.WindowStack.TryRemove(this, true);
-                if(this.chosenLeadership.name == "Dictatorship".Translate())
+                if(this.chosenLeadership.name == "Dictatorship".Translate() || this.chosenLeadership.name == "Monarchy")
                 {
-                    foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
+                    foreach (Pawn p in IncidentWorker_SetLeadership.getAllColonists())
                     {
                         LeaderWindow.purgeLeadership(p);
                     }

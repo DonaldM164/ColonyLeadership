@@ -41,7 +41,7 @@ namespace Nandonalt_ColonyLeadership
             {
                 
                 Messages.Message("LeaderDied".Translate(new object[] { this.def.label, this.pawn.Name.ToStringFull }), MessageTypeDefOf.PawnDeath);
-                foreach (Pawn p in IncidentWorker_LeaderElection.getAllColonists())
+                foreach (Pawn p in IncidentWorker_SetLeadership.getAllColonists())
                 {
                     int num2 = p.relations.OpinionOf(this.pawn);
                     if (num2 <= -20)
@@ -53,7 +53,8 @@ namespace Nandonalt_ColonyLeadership
                         p.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("LeaderDied"), this.pawn);
                     }
                 }
-                if(Utility.isDictatorship)Find.WindowStack.Add(new Dialog_ChooseLeader());
+                if(Utility.isDictatorship || Utility.isMonarchy)Find.WindowStack.Add(new Dialog_ChooseLeader());
+                
             }
          
             this.pawn.health.RemoveHediff(this);

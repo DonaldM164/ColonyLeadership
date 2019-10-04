@@ -66,14 +66,15 @@ namespace Nandonalt_ColonyLeadership
                     this.chosenPawn = null;
                 }, MenuOptionPriority.Default, null, null, 0f, null, null));
 
-                foreach (Pawn current in IncidentWorker_LeaderElection.getAllColonists())
+                foreach (Pawn current in IncidentWorker_SetLeadership.getAllColonists())
                 {
                     Hediff h1 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader1"));
                     Hediff h2 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader2"));
                     Hediff h3 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
                     Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
                     Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leaderExpired"));
-                    if (h1 == null && h2 == null && h3 == null && h4 == null && h5 == null && !current.story.WorkTagIsDisabled(WorkTags.Social))  { tpawns2.Add(current); }
+                    Hediff h6 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
+                    if (h1 == null && h2 == null && h3 == null && h4 == null && h5 == null && h6 == null && !current.story.WorkTagIsDisabled(WorkTags.Social))  { tpawns2.Add(current); }
                    
                 }
 
@@ -94,16 +95,23 @@ namespace Nandonalt_ColonyLeadership
                 {
                 if (this.chosenPawn != null)
                 {
-                    String targetLeader = "";
                     Pawn most = this.chosenPawn;
-                    float maxValue = new float[] { IncidentWorker_LeaderElection.getBotanistScore(most), IncidentWorker_LeaderElection.getWarriorScore(most), IncidentWorker_LeaderElection.getCarpenterScore(most), IncidentWorker_LeaderElection.getScientistScore(most) }.Max();
-                    if (maxValue == IncidentWorker_LeaderElection.getBotanistScore(most)) targetLeader = "leader1";
-                    if (maxValue == IncidentWorker_LeaderElection.getWarriorScore(most)) targetLeader = "leader2";
-                    if (maxValue == IncidentWorker_LeaderElection.getCarpenterScore(most)) targetLeader = "leader3";
-                    if (maxValue == IncidentWorker_LeaderElection.getScientistScore(most)) targetLeader = "leader4";
-                    Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(targetLeader), most, null);
-                    IncidentWorker_LeaderElection.doElect(most, hediff, true);
-
+                    if (Utility.getGov().name == "Democracy".Translate() || Utility.getGov().name == "Dictatorship".Translate())
+                    {
+                        String targetLeader = "";
+                        float maxValue = new float[] { IncidentWorker_SetLeadership.getBotanistScore(most), IncidentWorker_SetLeadership.getWarriorScore(most), IncidentWorker_SetLeadership.getCarpenterScore(most), IncidentWorker_SetLeadership.getScientistScore(most) }.Max();
+                        if (maxValue == IncidentWorker_SetLeadership.getBotanistScore(most)) targetLeader = "leader1";
+                        if (maxValue == IncidentWorker_SetLeadership.getWarriorScore(most)) targetLeader = "leader2";
+                        if (maxValue == IncidentWorker_SetLeadership.getCarpenterScore(most)) targetLeader = "leader3";
+                        if (maxValue == IncidentWorker_SetLeadership.getScientistScore(most)) targetLeader = "leader4";
+                        Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(targetLeader), most, null);
+                        IncidentWorker_SetLeadership.doElect(most, hediff, true);
+                    }
+                    else if(Utility.getGov().name == "Monarchy".Translate())
+                    {
+                        Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("ruler1"), most, null);
+                        IncidentWorker_SetLeadership.setRuler(most, hediff, true);
+                    }
                 }
                 Find.WindowStack.TryRemove(this, true);
                 

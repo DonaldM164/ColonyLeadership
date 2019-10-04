@@ -36,7 +36,7 @@ namespace Nandonalt_ColonyLeadership
         public static Pawn DetermineTeacher(Map map)
         {
             //Pawn result = null;
-            List<Pawn> pawns = IncidentWorker_LeaderElection.getAllColonists();
+            List<Pawn> pawns = IncidentWorker_SetLeadership.getAllColonists();
             List<Pawn> tpawns = new List<Pawn>();
             foreach (Pawn current in pawns)
             {
@@ -118,7 +118,7 @@ namespace Nandonalt_ColonyLeadership
                 return false;
             }
             //Everyone get over here!
-            if (p != spot.teacher)
+            if (p != spot.teacher && p.IsColonistPlayerControlled == true)
             {
                 return true;
             }
