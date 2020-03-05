@@ -255,14 +255,14 @@ namespace Nandonalt_ColonyLeadership
                 if (teacher.skills.GetSkill(SkillDefOf.Medicine).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Medicine);
                 if (teacher.skills.GetSkill(SkillDefOf.Animals).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Animals);
                 if (teachable.Count < 3) flag = true;
-                missing = "SkillSet1".Translate();
+                missing = "SkillSet1";
             }
             else if (leaderType == "leader2")
             {
                 if (teacher.skills.GetSkill(SkillDefOf.Shooting).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Shooting);
                 if (teacher.skills.GetSkill(SkillDefOf.Melee).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Melee);
                 if (teachable.Count < 2) flag = true;
-                missing = "SkillSet2".Translate();
+                missing = "SkillSet2";
             }
             else if (leaderType == "leader3")
             {
@@ -270,23 +270,23 @@ namespace Nandonalt_ColonyLeadership
                 if (teacher.skills.GetSkill(SkillDefOf.Crafting).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Crafting);
                 if (teacher.skills.GetSkill(SkillDefOf.Artistic).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Artistic);
                 if (teachable.Count < 3) flag = true;
-                missing = "SkillSet3".Translate();
+                missing = "SkillSet3";
             }
             else if (leaderType == "leader4")
             {
                 if (teacher.skills.GetSkill(SkillDefOf.Intellectual).Level >= TeachingUtility.minSkill) teachable.Add(SkillDefOf.Intellectual);
                 if (teachable.Count < 1) flag = true;
-                missing = "SkillSet4".Translate();
+                missing = "SkillSet4";
             }
 
             if (teachable.NullOrEmpty())
             {
-                report = "MustHaveSkill".Translate(new object[] { TeachingUtility.minSkill }) + missing;
+                report = "MustHaveSkill" + TeachingUtility.minSkill + " " + missing;
                 return false;
             }
             else if (flag)
             {
-                report = "OnlyTeachIfSkill".Translate(new object[] { TeachingUtility.minSkill }) + missing;
+                report = "OnlyTeachIfSkill" + TeachingUtility.minSkill + " " + missing;
                 return true;
             }
             report = "";

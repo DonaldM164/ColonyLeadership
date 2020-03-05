@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using UnityEngine;
+//using UnityEngine;
 using Verse;
 
 namespace Nandonalt_ColonyLeadership
@@ -11,6 +12,8 @@ namespace Nandonalt_ColonyLeadership
     [StaticConstructorOnStartup]
    public class Icon : ColonistBarColonistDrawer
     {
+
+        
 
         private static readonly Texture2D DeadColonistTex = ContentFinder<Texture2D>.Get("UI/Misc/DeadColonist", true);
 
@@ -79,23 +82,23 @@ namespace Nandonalt_ColonyLeadership
             }
             else if (colonist.InBed() && colonist.CurrentBed().Medical)
             {
-                this.DrawIcon(Icon_MedicalRest, ref vector, "ActivityIconMedicalRest".Translate());
+                this.DrawIcon(Icon_MedicalRest, ref vector, "ActivityIconMedicalRest");
             }
             else if (colonist.CurJob != null && colonist.jobs.curDriver.asleep)
             {
-                this.DrawIcon(Icon_Sleeping, ref vector, "ActivityIconSleeping".Translate());
+                this.DrawIcon(Icon_Sleeping, ref vector, "ActivityIconSleeping");
             }
             else if (colonist.CurJob != null && colonist.CurJob.def == JobDefOf.FleeAndCower)
             {
-                this.DrawIcon(Icon_Fleeing, ref vector, "ActivityIconFleeing".Translate());
+                this.DrawIcon(Icon_Fleeing, ref vector, "ActivityIconFleeing");
             }
             else if (flag)
             {
-                this.DrawIcon(Icon_Attacking, ref vector, "ActivityIconAttacking".Translate());
+                this.DrawIcon(Icon_Attacking, ref vector, "ActivityIconAttacking");
             }
             else if (colonist.mindState.IsIdle && GenDate.DaysPassed >= 1)
             {
-                this.DrawIcon(Icon_Idle, ref vector, "ActivityIconIdle".Translate());
+                this.DrawIcon(Icon_Idle, ref vector, "ActivityIconIdle");
             }
             else if (Leader != null)
             {
@@ -104,7 +107,7 @@ namespace Nandonalt_ColonyLeadership
      
             if (colonist.IsBurning())
             {
-                this.DrawIcon(Icon_Burning, ref vector, "ActivityIconBurning".Translate());
+                this.DrawIcon(Icon_Burning, ref vector, "ActivityIconBurning");
             }
 
             else if (colonist.Inspired)

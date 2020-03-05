@@ -23,12 +23,13 @@ namespace Nandonalt_ColonyLeadership
             return null;
         }
 
+
         public static bool isDictatorship
         {
             get
             {
                 GameComponent_ColonyLeadership comp = getCLComp();
-                if (comp != null && comp.chosenLeadership.name == "Dictatorship".Translate()) return true;
+                if (comp != null && comp.chosenLeadership.name == "Dictatorship") return true;
                 return false;
             }
         }
@@ -39,7 +40,7 @@ namespace Nandonalt_ColonyLeadership
             get
             {
                 GameComponent_ColonyLeadership comp = getCLComp();
-                if (comp != null && comp.chosenLeadership.name == "Democracy".Translate()) return true;
+                if (comp != null && comp.chosenLeadership.name == "Democracy") return true;
                 return false;
             }
         }
@@ -50,7 +51,7 @@ namespace Nandonalt_ColonyLeadership
             get
             {
                 GameComponent_ColonyLeadership comp = getCLComp();
-                if (comp != null && comp.chosenLeadership.name == "Monarchy".Translate()) return true;
+                if (comp != null && comp.chosenLeadership.name == "Monarchy") return true;
                 return false;
             }
         }

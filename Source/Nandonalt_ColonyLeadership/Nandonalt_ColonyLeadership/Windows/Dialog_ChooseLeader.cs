@@ -55,7 +55,7 @@ namespace Nandonalt_ColonyLeadership
             listing_Standard.Begin(inRect);
 
             listing_Standard.Label("ChooseLeader".Translate());
-            String label = (this.chosenPawn == null ? "NoneL".Translate() : this.chosenPawn.Name.ToStringShort);
+            String label = (chosenPawn == null ? "NoneL" : chosenPawn.Name.ToStringShort);
             if (listing_Standard.ButtonText(label, null))
             {
                 List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -73,8 +73,8 @@ namespace Nandonalt_ColonyLeadership
                     Hediff h3 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader3"));
                     Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
                     Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leaderExpired"));
-                    Hediff h6 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
-                    if (h1 == null && h2 == null && h3 == null && h4 == null && h5 == null && h6 == null && !current.story.WorkTagIsDisabled(WorkTags.Social))  { tpawns2.Add(current); }
+                    //Hediff h6 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("ruler1"));
+                    if (h1 == null && h2 == null && h3 == null && h4 == null && h5 == null && !current.WorkTagIsDisabled(WorkTags.Social))  { tpawns2.Add(current); }
                    
                 }
 
@@ -107,11 +107,13 @@ namespace Nandonalt_ColonyLeadership
                         Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(targetLeader), most, null);
                         IncidentWorker_SetLeadership.doElect(most, hediff, true);
                     }
-                    else if(Utility.getGov().name == "Monarchy".Translate())
+                    /**
+                    else if(Utility.getGov().name == "Monarchy")
                     {
                         Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("ruler1"), most, null);
                         IncidentWorker_SetLeadership.setRuler(most, hediff, true);
                     }
+    **/
                 }
                 Find.WindowStack.TryRemove(this, true);
                 

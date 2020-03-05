@@ -8,53 +8,10 @@
 		<isBad>false</isBad>
   </HediffDef>
 
-<!-- Monarchy -->
-<HediffDef ParentName="LeaderAuraBase">
-    <defName>rulerAura1</defName>
-    <label>Royalty Aura - King</label>
-    <stages>
-      <li>
-	   <minSeverity>0.00</minSeverity>
-        <label>Level 1</label>
-          <statOffsets>
-          <PlantWorkSpeed>+0.15</PlantWorkSpeed>
-		  <ConstructionSpeed>+0.15</ConstructionSpeed>
-		  <WorkSpeedGlobal>+0.1</WorkSpeedGlobal>
-          <MeleeHitChance>+0.1</MeleeHitChance>
-          <MeleeWeapon_CooldownMultiplier>0.95</MeleeWeapon_CooldownMultiplier>
-        </statOffsets>
-      </li>
-	  
-	      <li>
-	   <minSeverity>0.34</minSeverity>
-        <label>Level 2</label>
-          <statOffsets>
-          <PlantWorkSpeed>+0.25</PlantWorkSpeed>
-		  <ConstructionSpeed>+0.2</ConstructionSpeed>
-		  <WorkSpeedGlobal>+0.2</WorkSpeedGlobal>
-          <MeleeHitChance>+0.2</MeleeHitChance>
-          <MeleeWeapon_CooldownMultiplier>0.925</MeleeWeapon_CooldownMultiplier>
-        </statOffsets>
-      </li>
-	  
-	   <li>
-	   <minSeverity>0.67</minSeverity>
-        <label>Level 3</label>
-          <statOffsets>
-          <PlantWorkSpeed>+0.3</PlantWorkSpeed>
-		  <PlantHarvestYield>+0.3</PlantHarvestYield>
-		  <ConstructionSpeed>+0.3</ConstructionSpeed>
-		  <WorkSpeedGlobal>+0.3</WorkSpeedGlobal>
-          <MeleeHitChance>+0.3</MeleeHitChance>
-          <MeleeWeapon_CooldownMultiplier>0.9</MeleeWeapon_CooldownMultiplier>
-        </statOffsets>
-      </li>
-    </stages>
-  </HediffDef>
-  
   <!-- Colony Leaders -->
   <HediffDef ParentName="LeaderAuraBase">
     <defName>leaderAura1</defName>
+    <description>Botanist Aura</description>
     <label>Leader Aura - Botanist</label>
     <stages>
       <li>
@@ -102,6 +59,7 @@
   
     <HediffDef ParentName="LeaderAuraBase">
     <defName>leaderAura2</defName>
+    <description>Warrior Aura</description>
     <label>Leader Aura - Warrior</label>
     <stages>
       <li>
@@ -155,6 +113,7 @@
   
     <HediffDef ParentName="LeaderAuraBase">
     <defName>leaderAura3</defName>
+    <description>Carpenter Aura</description>
     <label>Leader Aura - Carpenter</label>
       <stages>
       <li>
@@ -197,6 +156,7 @@
         <HediffDef ParentName="LeaderAuraBase">
     <defName>leaderAura4</defName>
     <label>Leader Aura - Scientist</label>
+    <description>Scientist Aura</description>
     <stages>
       <li>
      <minSeverity>0.00</minSeverity>

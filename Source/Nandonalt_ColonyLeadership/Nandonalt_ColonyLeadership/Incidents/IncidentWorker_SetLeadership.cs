@@ -96,7 +96,7 @@ namespace Nandonalt_ColonyLeadership
                 Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
                 Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leaderExpired"));
                 if (h1 != null || h2 != null || h3 != null || h4 != null || h5 != null) { tpawns2.Add(current); }
-                if (current.story.WorkTagIsDisabled(WorkTags.Social)) { tpawns2.Add(current); }
+                if (current.WorkTagIsDisabled(WorkTags.Social)) { tpawns2.Add(current); }
            }
             foreach (Pawn current in tpawns2)
             {
@@ -211,6 +211,8 @@ namespace Nandonalt_ColonyLeadership
             return a + r.NextDouble() * (b - a);
         }
 
+
+        /***
         public static void setRuler(Pawn pawn, Hediff hediff, bool forced = false)
         {
             hediff.Severity = 0.1f;
@@ -246,6 +248,7 @@ namespace Nandonalt_ColonyLeadership
                 }
             }
         }
+        **/
         public static void doElect(Pawn pawn, Hediff hediff, bool forced = false)
         {
          hediff.Severity = 0.1f;
@@ -296,25 +299,29 @@ namespace Nandonalt_ColonyLeadership
 
         public static bool TryStartGathering(Map map)
         {
-        
-            Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
-            if (pawn == null)
+            Pawn organizer = GatheringsUtility.FindRandomGatheringOrganizer(Faction.OfPlayer, map, GatheringDefOf.Party);
+            
+
+            //Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
+            if (organizer == null)
             {              
 
-                Messages.Message("ElectionFail_ColonistsNotFound".Translate(), MessageTypeDefOf.RejectInput);
+                Messages.Message("ElectionFail_ColonistsNotFound", MessageTypeDefOf.RejectInput);
 
                 return false;
             }
+            
             IntVec3 intVec;
-            if (!RCellFinder.TryFindPartySpot(pawn, out intVec))
+            //RCellFinder.TryFindGatheringSpot(pawn, GatheringDef.Named(""), intVec)
+            if (!RCellFinder.TryFindGatheringSpot(organizer, GatheringDefOf.Party, out intVec))
             {
 
                 Messages.Message("Couldn't find a suitable safe spot for the election.", MessageTypeDefOf.RejectInput);
 
                 return false;
             }
-            LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(intVec), map, null);
-            Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.PositiveEvent, new TargetInfo(intVec, map, false), null);
+            LordMaker.MakeNewLord(organizer.Faction, new LordJob_Joinable_SetLeadership(intVec), map, null);
+            Find.LetterStack.ReceiveLetter("Election", "ElectionGathering", LetterDefOf.PositiveEvent, new TargetInfo(intVec, map, false), null);
             return true;
         }
 
@@ -338,8 +345,8 @@ namespace Nandonalt_ColonyLeadership
         
         public static float getBotanistScore(Pawn pawn)
         {
-            if (pawn.story.WorkTagIsDisabled(WorkTags.PlantWork)) return 0;
-            if (pawn.story.WorkTypeIsDisabled(WorkTypeDefOf.Growing)) return 0;
+            if (pawn.WorkTagIsDisabled(WorkTags.PlantWork)) return 0;
+            if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Growing)) return 0;
             float a = pawn.skills.GetSkill(SkillDefOf.Plants).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Plants)) * 0.4f;
             float b = pawn.skills.GetSkill(SkillDefOf.Medicine).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Medicine)) * 0.3f;
             float c = pawn.skills.GetSkill(SkillDefOf.Animals).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Animals)) * 0.3f;
@@ -348,7 +355,7 @@ namespace Nandonalt_ColonyLeadership
 
         public static float getWarriorScore(Pawn pawn)
         {
-            if (pawn.story.WorkTagIsDisabled(WorkTags.Violent)) return 0;
+            if (pawn.WorkTagIsDisabled(WorkTags.Violent)) return 0;
             float a = pawn.skills.GetSkill(SkillDefOf.Shooting).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Shooting));
             float b = pawn.skills.GetSkill(SkillDefOf.Melee).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Melee));
             return (a + b) / 2;
@@ -356,15 +363,15 @@ namespace Nandonalt_ColonyLeadership
 
         public static float getScientistScore(Pawn pawn)
         {
-            if (pawn.story.WorkTagIsDisabled(WorkTags.Intellectual)) return 0;
+            if (pawn.WorkTagIsDisabled(WorkTags.Intellectual)) return 0;
             float a = pawn.skills.GetSkill(SkillDefOf.Intellectual).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Intellectual)) *  1.5f;
             return a;
         }
 
         public static float getCarpenterScore(Pawn pawn)
         {
-            if (pawn.story.WorkTagIsDisabled(WorkTags.Crafting)) return 0;
-            if (pawn.story.WorkTagIsDisabled(WorkTags.ManualSkilled)) return 0;
+            if (pawn.WorkTagIsDisabled(WorkTags.Crafting)) return 0;
+            if (pawn.WorkTagIsDisabled(WorkTags.ManualSkilled)) return 0;
             float a = pawn.skills.GetSkill(SkillDefOf.Construction).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Construction)) * 0.4f;
             float b = pawn.skills.GetSkill(SkillDefOf.Crafting).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Crafting)) * 0.4f;
             float c = pawn.skills.GetSkill(SkillDefOf.Artistic).Level * getPassionFactor(pawn.skills.GetSkill(SkillDefOf.Artistic)) * 0.2f;

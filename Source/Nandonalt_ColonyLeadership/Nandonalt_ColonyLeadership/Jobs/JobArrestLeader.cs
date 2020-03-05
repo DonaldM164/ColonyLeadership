@@ -166,7 +166,7 @@ namespace Nandonalt_ColonyLeadership
                     IntVec3 position = this.DropBed.Position;
                     Thing thing;
                     this.pawn.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out thing, null);
-                    if (!this.DropBed.Destroyed && (this.DropBed.owners.Contains(this.Takee) || (this.DropBed.Medical && this.DropBed.AnyUnoccupiedSleepingSlot) || this.Takee.ownership == null))
+                    if (!this.DropBed.Destroyed && (this.DropBed.OwnersForReading.Contains(this.Takee) || (this.DropBed.Medical && this.DropBed.AnyUnoccupiedSleepingSlot) || this.Takee.ownership == null))
                     {
                         this.Takee.jobs.Notify_TuckedIntoBed(this.DropBed);
                         if (this.Takee.RaceProps.Humanlike && this.job.def != JobDefOf.Arrest && !this.Takee.IsPrisonerOfColony)

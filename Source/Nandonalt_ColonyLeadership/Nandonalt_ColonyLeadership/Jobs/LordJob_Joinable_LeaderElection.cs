@@ -6,17 +6,17 @@ using RimWorld;
 
 namespace Nandonalt_ColonyLeadership
 {
-    public class LordJob_Joinable_LeaderElection : LordJob_VoluntarilyJoinable
+    public class LordJob_Joinable_SetLeadership : LordJob_VoluntarilyJoinable
     {
         private IntVec3 spot;
 
         private Trigger_TicksPassed timeoutTrigger;        
 
-        public LordJob_Joinable_LeaderElection()
+        public LordJob_Joinable_SetLeadership()
         {
         }
 
-        public LordJob_Joinable_LeaderElection(IntVec3 spot)
+        public LordJob_Joinable_SetLeadership(IntVec3 spot)
         {
             this.spot = spot;
         }
@@ -24,7 +24,7 @@ namespace Nandonalt_ColonyLeadership
         public override StateGraph CreateGraph()
         {
             StateGraph stateGraph = new StateGraph();
-            LordToil_LeaderElection lordToil_Party = new LordToil_LeaderElection(this.spot);
+            LordToil_SetLeadership lordToil_Party = new LordToil_SetLeadership(this.spot);
             stateGraph.AddToil(lordToil_Party);
             LordToil_End lordToil_End = new LordToil_End();
             stateGraph.AddToil(lordToil_End);
@@ -48,7 +48,7 @@ namespace Nandonalt_ColonyLeadership
 
         private bool ShouldBeCalledOff()
         {
-            return !PartyUtility.AcceptableGameConditionsToContinueParty(base.Map) || (!this.spot.Roofed(base.Map) && !JoyUtility.EnjoyableOutsideNow(base.Map, null));
+            return !GatheringsUtility.AcceptableGameConditionsToContinueGathering(base.Map) || (!this.spot.Roofed(base.Map) && !JoyUtility.EnjoyableOutsideNow(base.Map, null));
         }
 
         private void Finished()
@@ -57,7 +57,8 @@ namespace Nandonalt_ColonyLeadership
             int num = 0;
             for (int i = 0; i < ownedPawns.Count; i++)
             {
-                if (PartyUtility.InPartyArea(ownedPawns[i].Position, this.spot, base.Map))
+                
+                if (GatheringsUtility.InGatheringArea(ownedPawns[i].Position, this.spot, base.Map))
                 {
                     ownedPawns[i].needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("AttendedElection"), null);
                     num++;
@@ -66,8 +67,8 @@ namespace Nandonalt_ColonyLeadership
             if (num != 0)
             {
            
-                IncidentParms parms = StorytellerUtility.DefaultParmsNow(IncidentDef.Named("LeaderElection").category, this.Map);
-                IncidentDef.Named("LeaderElection").Worker.TryExecute(parms);
+                IncidentParms parms = StorytellerUtility.DefaultParmsNow(IncidentDef.Named("SetLeadership").category, this.Map);
+                IncidentDef.Named("SetLeadership").Worker.TryExecute(parms);
             }
             else
             {
@@ -81,7 +82,7 @@ namespace Nandonalt_ColonyLeadership
             {
                 return 0f;
             }
-            if (!PartyUtility.ShouldPawnKeepPartying(p))
+            if (!GatheringsUtility.ShouldGuestKeepAttendingGathering(p))
             {
                 return 0f;
             }
@@ -97,7 +98,7 @@ namespace Nandonalt_ColonyLeadership
             Scribe_Values.Look<IntVec3>(ref this.spot, "spot", default(IntVec3), false);
         }
 
-        public override string GetReport()
+        public override string GetReport(Pawn pawn)
         {
             return "AttendingElectionDesc".Translate();
         }

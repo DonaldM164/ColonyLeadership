@@ -6,11 +6,11 @@ using RimWorld;
 
 namespace Nandonalt_ColonyLeadership
 {
-    public class LordToil_LeaderElection : LordToil
+    public class LordToil_SetLeadership : LordToil
     {
         private IntVec3 spot;
 
-        public LordToil_LeaderElection(IntVec3 spot)
+        public LordToil_SetLeadership(IntVec3 spot)
         {
             this.spot = spot;
         }

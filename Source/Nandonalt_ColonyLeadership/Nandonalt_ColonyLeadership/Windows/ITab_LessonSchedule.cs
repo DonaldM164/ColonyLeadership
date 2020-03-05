@@ -75,14 +75,14 @@ namespace Nandonalt_ColonyLeadership
 
 
             Rect button = new Rect(rect.x + dist, rect.y + 175, 140f, 30f);
-            String name = (spot.teachers[0] == null ? "NoneL".Translate() : spot.teachers[0].Name.ToStringShort);
+            String name = (spot.teachers[0] == null ? "NoneL" : spot.teachers[0].Name.ToStringShort);
             if (Widgets.ButtonText(button, "RedTeacher".Translate() + name, true, false, true))
             {
                 listPawns(0, spot);
             }
 
             Rect button2 = new Rect(rect.x + dist + 150f, rect.y + 175, 140f, 30f);
-            String name2 = (spot.teachers[1] == null ? "NoneL".Translate() : spot.teachers[1].Name.ToStringShort);
+            String name2 = (spot.teachers[1] == null ? "NoneL" : spot.teachers[1].Name.ToStringShort);
             if (Widgets.ButtonText(button2, "BlueTeacher".Translate() + name2, true, false, true))
             {
                 listPawns(1, spot);

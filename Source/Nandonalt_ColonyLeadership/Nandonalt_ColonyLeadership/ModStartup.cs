@@ -39,13 +39,11 @@ namespace Nandonalt_ColonyLeadership
         public static void doUpdateNotes()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.5.1 - UPDATE!");
+            str.AppendLine("COLONY LEADERSHIP MOD  - VERSION 1.6 - UPDATE!");
             str.AppendLine("");
-            str.AppendLine("What's new:");
-            str.AppendLine("  - Resolved issue where colonist leadership icon was blocking inspiration icon");
-            str.AppendLine("     -> Special thanks to Lethe for finding the fix.");
-            str.AppendLine("  - Resolved issue where caravan traders were attending lessons");
-            str.AppendLine("  - Future releases will be on adding new leadership types (Monarchy, Republic)");
+            str.AppendLine("Colony Leadership updated for 1.1 release of rimworld.");
+            str.AppendLine("I've been getting reports of undefined hediffs and elections that complete over and over but no one is elected.");
+            str.AppendLine("Let me know if you experience these or any other issues.");
             str.AppendLine("");
             str.AppendLine("-> This Update is brought to you by McKay, please report any bugs! ");
             str.AppendLine("-> Please support the original author! Nandonalt - https://www.patreon.com/nandonalt");
@@ -88,9 +86,9 @@ namespace Nandonalt_ColonyLeadership
                 //File.WriteAllText("logt.txt", e.Message.ToString());
             }
 
-            govtypes.Add(new GovType("Democracy".Translate(), "DemocracyDesc".Translate(), "Leader".Translate()));
-            govtypes.Add(new GovType("Dictatorship".Translate(), "DictatorshipDesc".Translate(), "Dictator".Translate()));
-            govtypes.Add(new GovType("Monarchy", "MonarchyDesc", "Ruler"));
+            govtypes.Add(new GovType("Democracy", "DemocracyDesc", "Leader"));
+            govtypes.Add(new GovType("Dictatorship", "DictatorshipDesc", "Dictator"));
+            //govtypes.Add(new GovType("Monarchy", "MonarchyDesc", "Ruler"));
             bool flag = File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath, "ColonyLeadershipGlobal.xml"));
             if (flag)
             {
@@ -113,7 +111,7 @@ namespace Nandonalt_ColonyLeadership
 
             if (ColonyLeadership.lastReadVersion != ColonyLeadership.newVersion)
             {
-                DefDatabase<MainButtonDef>.GetNamed("LeaderTab").label = "(!) " + "LeadershipTab".Translate();
+                DefDatabase<MainButtonDef>.GetNamed("LeaderTab").label = "(!) " + "LeadershipTab";
                 doUpdateNotes();
             }
             doHelpNotes();

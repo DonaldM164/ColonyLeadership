@@ -66,7 +66,7 @@ namespace Nandonalt_ColonyLeadership
             get
             {
                 string lab = this.def.label;
-                char[] MyChar = "Leader".Translate().ToCharArray();
+                char[] MyChar = "Leader".ToCharArray();
                 string NewString = lab.TrimStart(MyChar);
                 GovType gov = Utility.getGov();
                 if (gov == null) return this.def.label;
@@ -103,7 +103,7 @@ namespace Nandonalt_ColonyLeadership
             {
                 this.pawn.health.RemoveHediff(this);
                 //This used to be: LetterDefOf.BadNonUrgent (or something like that, no longer exists as a def in rimworld). changed to NeutralEvent until we know what it does. 
-                Find.LetterStack.ReceiveLetter("LeaderEndLetter".Translate(), "LeaderEndLetterDesc".Translate(new object[] { pawn.Name.ToStringFull }), LetterDefOf.NeutralEvent, this.pawn, null);
+                Find.LetterStack.ReceiveLetter("LeaderEndLetter", "LeaderEndLetterDesc" + pawn.Name.ToStringFull, LetterDefOf.NeutralEvent, this.pawn, null);
             }
             if (!isThisExpired()) {
                 this.Severity = Mathf.Clamp(this.Need.CurLevel,0.01f, 1f);

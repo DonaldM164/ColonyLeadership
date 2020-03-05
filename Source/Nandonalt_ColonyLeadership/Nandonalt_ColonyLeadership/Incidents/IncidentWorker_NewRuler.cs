@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Nandonalt_ColonyLeadership.Incidents
 {
+    /**
     class IncidentWorker_NewRuler
     {
     }
+    **/
 }

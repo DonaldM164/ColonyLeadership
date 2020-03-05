@@ -75,7 +75,7 @@ namespace Nandonalt_ColonyLeadership
                             Hediff h4 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leader4"));
                             Hediff h5 = current.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("leaderExpired"));
                             if (h1 != null || h2 != null || h3 != null || h4 != null || h5 != null) { tpawns2.Add(current); }
-                            if (current.story.WorkTagIsDisabled(WorkTags.Social)) { tpawns2.Add(current); }
+                            if (current.WorkTagIsDisabled(WorkTags.Social)) { tpawns2.Add(current); }
                         }
                         foreach (Pawn current in tpawns2)
                         {
@@ -109,7 +109,8 @@ namespace Nandonalt_ColonyLeadership
         }
         public bool TryStartGathering(Map map)
         {
-            Pawn pawn = PartyUtility.FindRandomPartyOrganizer(Faction.OfPlayer, map);
+            Pawn pawn = GatheringsUtility.FindRandomGatheringOrganizer(Faction.OfPlayer, map, GatheringDefOf.Party);
+            
             if (pawn == null)
             {
 
@@ -120,7 +121,7 @@ namespace Nandonalt_ColonyLeadership
 
             lastElectionTick = Find.TickManager.TicksGame;
             allowElection = false;
-            LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_LeaderElection(Position), map, null);
+            LordMaker.MakeNewLord(pawn.Faction, new LordJob_Joinable_SetLeadership(Position), map, null);
             Find.LetterStack.ReceiveLetter("Election".Translate(), "ElectionGathering".Translate(), LetterDefOf.PositiveEvent, new TargetInfo(Position, map, false), null);
             return true;
         }
@@ -166,7 +167,7 @@ namespace Nandonalt_ColonyLeadership
  
   public bool AcceptableMapConditionsToStartElection(Map map)
         {
-            if (!PartyUtility.AcceptableGameConditionsToContinueParty(map) || (!Position.Roofed(map) && !JoyUtility.EnjoyableOutsideNow(map, null)))
+            if (!GatheringsUtility.AcceptableGameConditionsToContinueGathering(map) || (!Position.Roofed(map) && !JoyUtility.EnjoyableOutsideNow(map, null)))
             {
                 return false;
             }
@@ -177,7 +178,7 @@ namespace Nandonalt_ColonyLeadership
             List<Lord> lords = map.lordManager.lords;
             for (int i = 0; i < lords.Count; i++)
             {
-                if (lords[i].LordJob is LordJob_Joinable_Party || lords[i].LordJob is LordJob_Joinable_MarriageCeremony || lords[i].LordJob is LordJob_Joinable_LeaderElection)
+                if (lords[i].LordJob is LordJob_Joinable_Party || lords[i].LordJob is LordJob_Joinable_MarriageCeremony || lords[i].LordJob is LordJob_Joinable_SetLeadership)
                 {
                     return false;
                 }
@@ -192,7 +193,7 @@ namespace Nandonalt_ColonyLeadership
             int num3 = 0;
             foreach (Pawn current2 in map.mapPawns.FreeColonistsSpawned)
             {
-                if (PartyUtility.ShouldPawnKeepPartying(current2))
+                if (GatheringsUtility.ShouldGuestKeepAttendingGathering(current2))
                 {
                     num3++;
                 }
